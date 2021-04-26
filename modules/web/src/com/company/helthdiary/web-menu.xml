@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-helthdiary" insertBefore="administration" caption="mainMsg://menu_config.application-helthdiary">
-        <item screen="helthdiary_RegisterScreen" caption="mainMsg://menu_config.helthdiary_RegisterScreen"/>
-        <item screen="helthdiary_RestorePasswordScreen" caption="mainMsg://menu_config.helthdiary_RestorePasswordScreen"/>
+        <item screen="helthdiary_Pressure.browse" caption="mainMsg://menu_config.helthdiary_Pressure.browse"/>
     </menu>
 </menu-config>
