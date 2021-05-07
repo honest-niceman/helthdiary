@@ -27,7 +27,7 @@ public class SelfUserRegistratedRole extends AnnotatedRoleDefinition {
         return super.entityAttributePermissions();
     }
 
-    @ScreenAccess(screenIds = {"application-helthdiary","helthdiary_Pressure.browse", "helthdiary_Pressure.edit"})
+    @ScreenAccess(screenIds = {"helthdiary_RegisterScreen","application-helthdiary","helthdiary_Pressure.browse", "helthdiary_Pressure.edit","helthdiary_RestorePasswordScreen"})
     @Override
     public ScreenPermissionsContainer screenPermissions() {
         return super.screenPermissions();
