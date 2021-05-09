@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://patientEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.helthdiary.web.screens.patient">
+    <data>
+        <instance id="patientDc"
+                  class="com.company.helthdiary.entity.Patient">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="patientDc">
+            <column width="350px">
+                <textField id="nameFirstField" property="nameFirst"/>
+                <textField id="nameLastField" property="nameLast"/>
+                <dateField id="dateOfBirthField" property="dateOfBirth"/>
+                <lookupField id="genderField" property="gender"/>
+                <textField id="heightField" property="height"/>
+                <textField id="weightField" property="weight"/>
+                <textField id="calorieField" property="calorie"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

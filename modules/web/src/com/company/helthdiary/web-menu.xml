@@ -4,5 +4,6 @@
         <item screen="helthdiary_Pressure.browse" caption="mainMsg://menu_config.helthdiary_Pressure.browse"/>
         <item screen="helthdiary_Glucose.browse" caption="mainMsg://menu_config.helthdiary_Glucose.browse"/>
         <item screen="helthdiary_Pulse.browse" caption="mainMsg://menu_config.helthdiary_Pulse.browse"/>
+        <item screen="helthdiary_Patient.browse" caption="mainMsg://menu_config.helthdiary_Patient.browse"/>
     </menu>
 </menu-config>

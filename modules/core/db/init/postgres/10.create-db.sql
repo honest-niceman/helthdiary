@@ -29,8 +29,8 @@ create table HELTHDIARY_PULSE (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    USER_ID uuid not null,
     RATE integer not null,
+    USER_ID uuid,
     DESCRIPTION text,
     DATE_ date not null,
     --
@@ -57,8 +57,8 @@ create table HELTHDIARY_GLUCOSE (
     primary key (ID)
 )^
 -- end HELTHDIARY_GLUCOSE
--- begin HELTHDIARY_SLEEP
-create table HELTHDIARY_SLEEP (
+-- begin HELTHDIARY_PATIENT
+create table HELTHDIARY_PATIENT (
     ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
@@ -69,10 +69,14 @@ create table HELTHDIARY_SLEEP (
     DELETED_BY varchar(50),
     --
     USER_ID uuid not null,
-    HOURS double precision,
-    DESCRIPTION text,
-    DATE_ date not null,
+    NAME_FIRST varchar(50) not null,
+    NAME_LAST varchar(50) not null,
+    DATE_OF_BIRTH date not null,
+    GENDER varchar(50) not null,
+    HEIGHT double precision,
+    WEIGHT double precision,
+    CALORIE double precision,
     --
     primary key (ID)
 )^
--- end HELTHDIARY_SLEEP
+-- end HELTHDIARY_PATIENT
