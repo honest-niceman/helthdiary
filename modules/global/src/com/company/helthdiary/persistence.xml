@@ -4,5 +4,7 @@
 
         <class>com.company.helthdiary.entity.Glucose</class>
         <class>com.company.helthdiary.entity.Pressure</class>
+        <class>com.company.helthdiary.entity.Pulse</class>
+        <class>com.company.helthdiary.entity.Patient</class>
     </persistence-unit>
 </persistence>

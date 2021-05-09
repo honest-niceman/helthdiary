@@ -3,5 +3,6 @@
     <menu id="application-helthdiary" insertBefore="administration" caption="mainMsg://menu_config.application-helthdiary">
         <item screen="helthdiary_Pressure.browse" caption="mainMsg://menu_config.helthdiary_Pressure.browse"/>
         <item screen="helthdiary_Glucose.browse" caption="mainMsg://menu_config.helthdiary_Glucose.browse"/>
+        <item screen="helthdiary_Pulse.browse" caption="mainMsg://menu_config.helthdiary_Pulse.browse"/>
     </menu>
 </menu-config>
