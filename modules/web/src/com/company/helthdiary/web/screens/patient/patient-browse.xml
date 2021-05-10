@@ -2,12 +2,13 @@
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://patientBrowse.caption"
-        focusComponent="patientsTable"
         messagesPack="com.company.helthdiary.web.screens.patient">
     <data readOnly="true">
         <collection id="patientsDc"
                     class="com.company.helthdiary.entity.Patient">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="user" view="_minimal"/>
+            </view>
             <loader id="patientsDl">
                 <query>
                     <![CDATA[select e from helthdiary_Patient e]]>
@@ -24,50 +25,19 @@
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="patientsTable"
-            spacing="true">
-        <filter id="filter"
-                applyTo="patientsTable"
-                dataLoader="patientsDl">
-            <properties include=".*"/>
-        </filter>
-        <groupTable id="patientsTable"
-                    width="100%"
-                    dataContainer="patientsDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
-            <columns>
-                <column id="nameLast" />
-            </columns>
-            <columns>
-                <column id="dateOfBirth"/>
-            </columns>
-            <columns>
-                <column id="gender"/>
-            </columns>
-            <columns>
-                <column id="height"/>
-            </columns>
-            <columns>
-                <column id="weight"/>
-        </columns>
-            <columns>
-                <column id="calorie"/>
-        </columns>
-            <rowsCount/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="patientsTable.create"/>
-                <button id="editBtn" action="patientsTable.edit"/>
-                <button id="removeBtn" action="patientsTable.remove"/>
+    <layout spacing="true">
+        <form width="AUTO" height="AUTO">
+            <textField id="nameFirstField" caption="msg://First Name" editable="false"/>
+            <textField id="nameLastField" caption="msg://Last Name" editable="false"/>
+            <dateField id="dateOfBirthField" caption="msg://Date of birth" editable="false"/>
+            <lookupField id="genderField" caption="msg://Gender" editable="false"/>
+            <textField id="heightField" caption="msg://Height" editable="false"/>
+            <textField id="weightField" caption="msg://Weight" editable="false"/>
+            <textField id="calorieField" caption="msg://Calorie" editable="false"/>
+            <buttonsPanel id="buttonsPanel" alwaysVisible="true" >
+                <button id="editBtn" caption="msg://edit"/>
+                <button id="createBtn" caption="msg://create"/>
             </buttonsPanel>
-        </groupTable>
-        <hbox id="lookupActions" spacing="true" visible="false">
-            <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
-        </hbox>
+        </form>
     </layout>
 </window>

@@ -20,7 +20,7 @@ public class Patient extends StandardEntity {
     @Lookup(type = LookupType.SCREEN, actions = {"lookup", "open", "clear"})
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_ID", unique = true)
     private User user;
 
     @NotNull
@@ -40,7 +40,7 @@ public class Patient extends StandardEntity {
 
     @NotNull
     @Column(name = "GENDER", nullable = false)
-    private String gender;
+    private Integer gender;
 
     @Column(name = "HEIGHT")
     @Positive
@@ -54,6 +54,14 @@ public class Patient extends StandardEntity {
 
     @Column(name = "CALORIE")
     private Double calorie;
+
+    public void setGender(Gender gender) {
+        this.gender = gender == null ? null : gender.getId();
+    }
+
+    public Gender getGender() {
+        return gender == null ? null : Gender.fromId(gender);
+    }
 
     public Double getCalorie() {
         return calorie;
@@ -77,14 +85,6 @@ public class Patient extends StandardEntity {
 
     public void setHeight(Double height) {
         this.height = height;
-    }
-
-    public genderEnum getGender() {
-        return gender == null ? null : genderEnum.fromId(gender);
-    }
-
-    public void setGender(genderEnum gender) {
-        this.gender = gender == null ? null : gender.getId();
     }
 
     public String getNameLast() {

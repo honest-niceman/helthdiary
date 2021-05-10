@@ -6,7 +6,9 @@
     <data>
         <instance id="patientDc"
                   class="com.company.helthdiary.entity.Patient">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="user" view="_minimal"/>
+            </view>
             <loader/>
         </instance>
     </data>
@@ -15,12 +17,19 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="patientDc">
             <column width="350px">
+                <pickerField id="userField" property="user" visible="false">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="open" type="picker_open"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
                 <textField id="nameFirstField" property="nameFirst"/>
                 <textField id="nameLastField" property="nameLast"/>
                 <dateField id="dateOfBirthField" property="dateOfBirth"/>
                 <lookupField id="genderField" property="gender"/>
-                <textField id="heightField" property="height"/>
-                <textField id="weightField" property="weight"/>
+                <textField id="heightField" property="height" maxLength="3"/>
+                <textField id="weightField" property="weight" maxLength="3"/>
                 <textField id="calorieField" property="calorie"/>
             </column>
         </form>

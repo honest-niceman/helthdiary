@@ -6,5 +6,7 @@
         <class>com.company.helthdiary.entity.Pressure</class>
         <class>com.company.helthdiary.entity.Pulse</class>
         <class>com.company.helthdiary.entity.Patient</class>
+        <class>com.company.helthdiary.entity.Doctor</class>
+        <class>com.company.helthdiary.entity.Visit</class>
     </persistence-unit>
 </persistence>

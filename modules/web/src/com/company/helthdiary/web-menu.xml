@@ -5,5 +5,8 @@
         <item screen="helthdiary_Glucose.browse" caption="mainMsg://menu_config.helthdiary_Glucose.browse"/>
         <item screen="helthdiary_Pulse.browse" caption="mainMsg://menu_config.helthdiary_Pulse.browse"/>
         <item screen="helthdiary_Patient.browse" caption="mainMsg://menu_config.helthdiary_Patient.browse"/>
+        <item screen="helthdiary_Patient1.browse" caption="mainMsg://menu_config.helthdiary_Patient1.browse"/>
+        <item screen="helthdiary_Doctor.browse" caption="mainMsg://menu_config.helthdiary_Doctor.browse"/>
+        <item screen="helthdiary_Visit.browse" caption="mainMsg://menu_config.helthdiary_Visit.browse"/>
     </menu>
 </menu-config>
