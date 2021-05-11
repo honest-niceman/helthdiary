@@ -67,4 +67,5 @@ public class Pulse extends StandardEntity {
     public void setRate(Integer rate) {
         this.rate = rate;
     }
+
 }

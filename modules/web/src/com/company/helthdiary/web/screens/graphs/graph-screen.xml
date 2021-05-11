@@ -21,19 +21,126 @@
                 </query>
             </loader>
         </collection>
+
+        <collection id="glucosesDc"
+                    class="com.company.helthdiary.entity.Glucose">
+            <view extends="_local"/>
+            <loader id="glucoseDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Glucose e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.user = :user</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
+        <collection id="pressuresDc"
+                    class="com.company.helthdiary.entity.Pressure">
+        <view extends="_local"/>
+        <loader id="pressuresDl">
+            <query>
+                <![CDATA[select e from helthdiary_Pressure e]]>
+                <condition>
+                    <and>
+                        <c:jpql>
+                            <c:where>e.user = :user</c:where>
+                        </c:jpql>
+                    </and>
+                </condition>
+            </query>
+        </loader>
+    </collection>
     </data>
 
     <layout>
+        <hbox>
+            <vbox>
+                <label value="msg://Pulse" align="TOP_CENTER"/>
+                <chart:serialChart id="Pulse"
+                                   categoryField="date"
+                                   dataContainer="pulsesDc"
+                                   plotAreaBorderAlpha="0"
+                                   theme="LIGHT"
+                                   addClassNames="true"
+                                   plotAreaFillAlphas="0.1"
+                                   responsive="true"
+                                   startDuration="1">
+                    <chart:legend equalWidths="false"
+                                  position="TOP"
+                                  valueAlign="LEFT"
+                                  valueWidth="100"/>
+                    <chart:graphs>
+                        <chart:graph fillAlphas="0.6"
+                                     type="COLUMN"
+                                     lineAlpha="0.4"
+                                     title="Rate"
+                                     valueField="rate"/>
+                    </chart:graphs>
+                    <chart:categoryAxis axisColor="#FBCEB1"
+                                        gridAlpha="0.07"
+                                        startOnAxis="true">
+                    </chart:categoryAxis>
+                    <chart:export/>
+                </chart:serialChart>
+            </vbox>
+
+
+            <vbox>
+            <label value="msg://Glucose" align="TOP_CENTER"/>
+            <chart:serialChart id="Glucose"
+                               categoryField="date"
+                               dataContainer="glucosesDc"
+                               marginLeft="0"
+                               marginTop="0"
+                               plotAreaBorderAlpha="0"
+
+                               addClassNames="true"
+
+                               plotAreaFillAlphas="0.1"
+                               responsive="true"
+                               startDuration="1"
+
+                               theme="LIGHT">
+
+
+                <chart:legend equalWidths="false"
+                              position="TOP"
+                              valueAlign="LEFT"
+                              valueWidth="100"/>
+
+                <chart:categoryAxis gridPosition="START"/>
+                <chart:graphs>
+                    <chart:graph fillAlphas="0.57"
+                                 lineAlpha="0.4"
+                                 title="Level"
+                                 type="COLUMN"
+                                 valueField="level"
+                    />
+                </chart:graphs>
+                <chart:export/>
+            </chart:serialChart>
+            </vbox>
+
+        </hbox>
+
+    <hbox >
+        <vbox >
+            <label value="msg://" align="TOP_CENTER" height="100%"/>
+            <label value="msg://" align="TOP_CENTER" height="100%"/>
+            <label value="msg://" align="TOP_CENTER" height="100%"/>
+            <label value="msg://Pressure" align="TOP_CENTER" />
         <chart:serialChart id="lineChart"
                            autoMarginOffset="20"
                            categoryField="date"
-                           dataContainer="pulsesDc"
-                           height="100%"
-                           marginRight="40"
+                           dataContainer="pressuresDc"
                            marginLeft="40"
-                           mouseWheelZoomEnabled="true"
-                           theme="LIGHT"
-                           width="100%">
+                           marginRight="40"
+
+                           theme="LIGHT">
             <chart:valueAxes>
                 <chart:axis id="v1"
                             axisAlpha="0"
@@ -44,20 +151,39 @@
                            shadowAlpha="0"/>
             <chart:graphs>
                 <chart:graph id="g1"
+                             balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
                              bullet="ROUND"
                              bulletBorderAlpha="1"
-                             bulletBorderColor="WHITE"
+                             bulletColor="WHITE"
+                             bulletSize="5"
                              hideBulletsCount="50"
                              lineThickness="2"
-                             useNegativeColorIfDown="true"
-                             negativeLineColor="YELLOWGREEN"
-                             valueField="rate"
-                             balloonText="&lt;span style='font-size:18px;'&gt;[[value]]&lt;/span&gt;">
+                             title="upperBp"
+                             useLineColorForBulletBorder="true"
+                             valueAxis="v1"
+                             valueField="upperBp">
+                    <chart:balloon adjustBorderColor="false"
+                                   color="WHITE"
+                                   drop="true"/>
+                </chart:graph>
+                <chart:graph id="g2"
+                             balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
+                             bullet="ROUND"
+                             bulletBorderAlpha="1"
+                             bulletColor="WHITE"
+                             bulletSize="5"
+                             hideBulletsCount="50"
+                             lineThickness="2"
+                             title="lowerBp"
+                             useLineColorForBulletBorder="true"
+                             valueAxis="v2"
+                             valueField="lowerBp">
                     <chart:balloon adjustBorderColor="false"
                                    color="WHITE"
                                    drop="true"/>
                 </chart:graph>
             </chart:graphs>
+            <chart:legend useGraphSettings="true"/>
             <chart:categoryAxis dashLength="1"
                                 minorGridEnabled="true"/>
             <chart:chartCursor cursorAlpha="1"
@@ -66,43 +192,10 @@
                                limitToGraph="g1"
                                pan="true"
                                valueLineAlpha="0.2"
-                               valueLineEnabled="true"
-                               valueLineBalloonEnabled="true"
                                valueZoomable="true"/>
             <chart:export/>
         </chart:serialChart>
-        <chart:serialChart id="stackedArea"
-                           categoryField="date"
-                           dataContainer="pulsesDc"
-                           height="100%"
-                           marginLeft="0"
-                           marginTop="10"
-                           plotAreaBorderAlpha="0"
-                           width="100%">
-            <chart:chartCursor cursorAlpha="0"/>
-            <chart:legend equalWidths="false"
-                          periodValueText="total: [[value.sum]]"
-                          position="TOP"
-                          valueAlign="LEFT"
-                          valueWidth="100"/>
-            <chart:valueAxes>
-                <chart:axis gridAlpha="0.07"
-                            position="LEFT"
-                            stackType="REGULAR"
-                            title="Traffic incidents"/>
-            </chart:valueAxes>
-            <chart:graphs>
-                <chart:graph fillAlphas="0.6"
-                             type="COLUMN"
-                             lineAlpha="0.4"
-                             title="Cars"
-                             valueField="rate"/>
-            </chart:graphs>
-            <chart:categoryAxis axisColor="#DADADA"
-                                gridAlpha="0.07"
-                                startOnAxis="true">
-            </chart:categoryAxis>
-            <chart:export/>
-        </chart:serialChart>
+        </vbox>
+    </hbox>
     </layout>
 </window>
