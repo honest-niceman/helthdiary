@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://graphScreen.caption"
+        messagesPack="com.company.helthdiary.web.screens.graphs"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <data readOnly="true">
+        <collection id="pulsesDc"
+                    class="com.company.helthdiary.entity.Pulse">
+            <view extends="_local"/>
+            <loader id="pulsesDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Pulse e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.user = :user</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
+    </data>
+
+    <layout>
+        <chart:serialChart id="lineChart"
+                           autoMarginOffset="20"
+                           categoryField="date"
+                           dataContainer="pulsesDc"
+                           height="100%"
+                           marginRight="40"
+                           marginLeft="40"
+                           mouseWheelZoomEnabled="true"
+                           theme="LIGHT"
+                           width="100%">
+            <chart:valueAxes>
+                <chart:axis id="v1"
+                            axisAlpha="0"
+                            ignoreAxisWidth="true"
+                            position="LEFT"/>
+            </chart:valueAxes>
+            <chart:balloon borderThickness="1"
+                           shadowAlpha="0"/>
+            <chart:graphs>
+                <chart:graph id="g1"
+                             bullet="ROUND"
+                             bulletBorderAlpha="1"
+                             bulletBorderColor="WHITE"
+                             hideBulletsCount="50"
+                             lineThickness="2"
+                             useNegativeColorIfDown="true"
+                             negativeLineColor="YELLOWGREEN"
+                             valueField="rate"
+                             balloonText="&lt;span style='font-size:18px;'&gt;[[value]]&lt;/span&gt;">
+                    <chart:balloon adjustBorderColor="false"
+                                   color="WHITE"
+                                   drop="true"/>
+                </chart:graph>
+            </chart:graphs>
+            <chart:categoryAxis dashLength="1"
+                                minorGridEnabled="true"/>
+            <chart:chartCursor cursorAlpha="1"
+                               cursorColor="#258cbb"
+                               cursorPosition="MOUSE"
+                               limitToGraph="g1"
+                               pan="true"
+                               valueLineAlpha="0.2"
+                               valueLineEnabled="true"
+                               valueLineBalloonEnabled="true"
+                               valueZoomable="true"/>
+            <chart:export/>
+        </chart:serialChart>
+        <chart:serialChart id="stackedArea"
+                           categoryField="date"
+                           dataContainer="pulsesDc"
+                           height="100%"
+                           marginLeft="0"
+                           marginTop="10"
+                           plotAreaBorderAlpha="0"
+                           width="100%">
+            <chart:chartCursor cursorAlpha="0"/>
+            <chart:legend equalWidths="false"
+                          periodValueText="total: [[value.sum]]"
+                          position="TOP"
+                          valueAlign="LEFT"
+                          valueWidth="100"/>
+            <chart:valueAxes>
+                <chart:axis gridAlpha="0.07"
+                            position="LEFT"
+                            stackType="REGULAR"
+                            title="Traffic incidents"/>
+            </chart:valueAxes>
+            <chart:graphs>
+                <chart:graph fillAlphas="0.6"
+                             type="COLUMN"
+                             lineAlpha="0.4"
+                             title="Cars"
+                             valueField="rate"/>
+            </chart:graphs>
+            <chart:categoryAxis axisColor="#DADADA"
+                                gridAlpha="0.07"
+                                startOnAxis="true">
+            </chart:categoryAxis>
+            <chart:export/>
+        </chart:serialChart>
+    </layout>
+</window>

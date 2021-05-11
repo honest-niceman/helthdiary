@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Table(name = "HELTHDIARY_VISIT")
 @Entity(name = "helthdiary_Visit")
@@ -31,6 +32,7 @@ public class Visit extends StandardEntity {
     @NotNull
     @Column(name = "TYPE_", nullable = false)
     private Integer type;
+
 
     public Patient getPatient() {
         return patient;

@@ -28,35 +28,42 @@
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="visitsTable"
+    <layout expand="visitsTables"
             spacing="true">
         <filter id="filter"
                 applyTo="visitsTable"
                 dataLoader="visitsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="visitsTable"
-                    width="100%"
-                    dataContainer="visitsDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
-            <columns>
-                <column id="doctor"/>
-                <column id="start"/>
-                <column id="end"/>
-                <column id="type"/>
-            </columns>
-            <rowsCount/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="visitsTable.create"/>
-                <button id="editBtn" action="visitsTable.edit"/>
-                <button id="removeBtn" action="visitsTable.remove"/>
-            </buttonsPanel>
-        </groupTable>
+        <tabSheet id="visitsTables">
+            <tab id="caledarTab" caption="Tab" margin="true,false,false,false" spacing="true" expand="calendar">
+                <calendar id="calendar" dataContainer="visitsDc" endDateProperty="end" startDateProperty="start"/>
+            </tab>
+            <tab id="tableTab" caption="msg://tableTab.caption" expand="visitsTable">
+                <groupTable id="visitsTable"
+                                    width="100%"
+                                    dataContainer="visitsDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="doctor"/>
+                        <column id="start"/>
+                        <column id="end"/>
+                        <column id="type"/>
+                    </columns>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="visitsTable.create"/>
+                        <button id="editBtn" action="visitsTable.edit"/>
+                        <button id="removeBtn" action="visitsTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </tab>
+        </tabSheet>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>

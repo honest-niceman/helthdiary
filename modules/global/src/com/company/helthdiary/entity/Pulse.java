@@ -27,10 +27,6 @@ public class Pulse extends StandardEntity {
         this.description = description;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -39,18 +35,22 @@ public class Pulse extends StandardEntity {
         return description;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     @Lob
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Temporal(TemporalType.DATE)
-    @NotNull
     @Column(name = "DATE_", nullable = false)
+    @NotNull
+    @Temporal(TemporalType.DATE)
     private Date date;
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 
     public User getUser() {
         return user;
