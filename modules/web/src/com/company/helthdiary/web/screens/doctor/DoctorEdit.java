@@ -2,7 +2,6 @@ package com.company.helthdiary.web.screens.doctor;
 
 import com.haulmont.cuba.core.global.*;
 import com.haulmont.cuba.gui.components.TextField;
-import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.helthdiary.entity.Doctor;
 import com.haulmont.cuba.security.entity.Group;
@@ -12,7 +11,6 @@ import com.haulmont.cuba.security.entity.UserRole;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @UiController("helthdiary_Doctor.edit")
@@ -22,7 +20,6 @@ import java.util.UUID;
 public class DoctorEdit extends StandardEditor<Doctor> {
     @Inject
     private DataManager dataManager;
-    private static final String COMPANY_GROUP_ID = "0fa2b1a5-1d68-4d69-9fbd-dff348347f93";
     @Inject
     private TextField<String> firstnameField;
     @Inject
@@ -32,6 +29,8 @@ public class DoctorEdit extends StandardEditor<Doctor> {
     @Inject
     private PasswordEncryption passwordEncryption;
 
+    private static final String COMPANY_GROUP_ID = "0fa2b1a5-1d68-4d69-9fbd-dff348347f93";
+    private static final String DOCTOR_ROLE_ID = "55dc3375-e1b0-f6f2-ff72-93a456b240ac";
 
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
@@ -39,22 +38,36 @@ public class DoctorEdit extends StandardEditor<Doctor> {
         Group group = dataManager.load(LoadContext.create(Group.class).setId(UUID.fromString(COMPANY_GROUP_ID)));
 
         // Create a user instance
-        User user = metadata.create(User.class);
-        user.setLogin(firstnameField.getValue());
-        user.setPassword(passwordEncryption.getPasswordHash(user.getId(), firstnameField.getValue()));
-        user.setChangePasswordAtNextLogon(true);
-        user.setFirstName(firstnameField.getValue());
-        user.setLastName(lastnameField.getValue());
+        User doctorUser = metadata.create(User.class);
+        doctorUser.setLogin(firstnameField.getValue());
+        doctorUser.setPassword(passwordEncryption.getPasswordHash(doctorUser.getId(), firstnameField.getValue()));
+        doctorUser.setChangePasswordAtNextLogon(true);
+        doctorUser.setFirstName(firstnameField.getValue());
+        doctorUser.setLastName(lastnameField.getValue());
+
+        //находим роль, которую создали программно: класс com/company/helthdiary/core/role/DoctorRole.java
+        Role role = dataManager.load(LoadContext.create(Role.class).setId(UUID.fromString(DOCTOR_ROLE_ID)));
+        UserRole userRole = dataManager.create(UserRole.class); //создаем юзерРоль
+
+        ArrayList<UserRole> userRoles = new ArrayList<>(); // создаем список юзерролей
+        userRoles.add(userRole); // добавляем ранее созданную юзер роль
+
+        doctorUser.setUserRoles(userRoles); // присваем роли нашему доктору-юзеру
+
+        // у юзера роль указываем роль, пользователя и имя роли которую создали в классе com/company/helthdiary/core/role/DoctorRole.java
+        userRole.setRole(role);
+        userRole.setUser(doctorUser);
+        userRole.setRoleName("Doctor");
 
         // Note that the platform does not support the default group out of the box, so here we define the default group id and set it for the newly registered users.
-        user.setGroup(group);
+        doctorUser.setGroup(group);
 
-        getEditedEntity().setUser(user);
+        getEditedEntity().setUser(doctorUser);
 
         event.getDataContext().clear();
 
         // Save new entities
-        dataManager.commit(new CommitContext(user, getEditedEntity()));
+        dataManager.commit(new CommitContext(doctorUser, getEditedEntity(),userRole));
     }
 
 }

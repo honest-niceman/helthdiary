@@ -27,7 +27,7 @@ public class DoctorRole extends AnnotatedRoleDefinition {
         return super.entityAttributePermissions();
     }
 
-    @ScreenAccess(screenIds = {"application-helthdiary", "helthdiary_RestorePasswordScreen"})
+    @ScreenAccess(screenIds = {"application-helthdiary", "helthdiary_RestorePasswordScreen", "helthdiary_Patient.browse"})
     @Override
     public ScreenPermissionsContainer screenPermissions() {
         return super.screenPermissions();
