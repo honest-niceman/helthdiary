@@ -22,6 +22,23 @@
             </loader>
         </collection>
 
+        <collection id="temperaturesDc"
+                    class="com.company.helthdiary.entity.Temperature">
+            <view extends="_local"/>
+            <loader id="temperaturesDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Temperature e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.user = :user</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
+
         <collection id="glucosesDc"
                     class="com.company.helthdiary.entity.Glucose">
             <view extends="_local"/>
@@ -38,6 +55,7 @@
                 </query>
             </loader>
         </collection>
+
         <collection id="pressuresDc"
                     class="com.company.helthdiary.entity.Pressure">
         <view extends="_local"/>
@@ -54,12 +72,33 @@
             </query>
         </loader>
     </collection>
+        <collection id="patientsDc"
+                    class="com.company.helthdiary.entity.Patient">
+            <view extends="_local">
+                <property name="user" view="_minimal"/>
+            </view>
+            <loader id="patientsDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Patient e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.user = :user</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
     </data>
 
+
+
+
     <layout>
+
         <hbox>
             <vbox>
-                <label value="msg://Pulse" align="TOP_CENTER"/>
                 <chart:serialChart id="Pulse"
                                    categoryField="date"
                                    dataContainer="pulsesDc"
@@ -75,6 +114,7 @@
                                   valueWidth="100"/>
                     <chart:graphs>
                         <chart:graph fillAlphas="0.6"
+                                     colorField="color"
                                      type="COLUMN"
                                      lineAlpha="0.4"
                                      title="Rate"
@@ -86,6 +126,9 @@
                     </chart:categoryAxis>
                     <chart:export/>
                 </chart:serialChart>
+                <hbox><label value="msg://above normal" align="TOP_CENTER" stylename="#FF0F00"/>
+                <label value="msg://below normal" align="TOP_CENTER" stylename="#FF0F00"/>
+                </hbox>
             </vbox>
 
 
@@ -124,10 +167,15 @@
                 <chart:export/>
             </chart:serialChart>
             </vbox>
-
+            <vbox height="150" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
+                <label value="msg://Input date"/>
+                <dateField id="startDate" property="input Date"/>
+                <dateField id="endDate" property="input Date"/>
+                <button id="filterBtn" caption="msg://Show"/>
+            </vbox>
         </hbox>
 
-    <hbox >
+        <hbox >
         <vbox >
             <label value="msg://" align="TOP_CENTER" height="100%"/>
             <label value="msg://" align="TOP_CENTER" height="100%"/>
@@ -195,6 +243,38 @@
                                valueZoomable="true"/>
             <chart:export/>
         </chart:serialChart>
+            <chart:serialChart
+                    dataContainer="temperaturesDc"
+                    width="100%"
+                    height="100%"
+                    theme="NONE"
+                    marginRight="70"
+                    autoMarginOffset="20"
+                    categoryField="date">
+                <chart:balloon cornerRadius="6"/>
+                <chart:valueAxes>
+                    <chart:axis axisAlpha="0"/>
+                </chart:valueAxes>
+                <chart:graphs>
+                    <chart:graph
+                            balloonText="[[category]]&lt;br&gt;&lt;b&gt;&lt;span style='font-size:14px;'&gt;[[value]] C&lt;/span&gt;&lt;/b&gt;"
+                            bullet="ROUND"
+                            bulletSize="6"
+                            connect="false"
+                            lineColor="#b6d278"
+                            lineThickness="2"
+                            negativeLineColor="#487dac"
+                            valueField="measure"/>
+                </chart:graphs>
+                <chart:chartCursor categoryBalloonDateFormat="DD"
+                                   cursorAlpha="0.1"
+                                   cursorColor="#000000"
+                                   fullWidth="true"
+                                   graphBulletSize="2"/>
+                <chart:categoryAxis minPeriod="DAYS"
+                                    minorGridEnabled="true"/>
+                <chart:export/>
+            </chart:serialChart>
         </vbox>
     </hbox>
     </layout>

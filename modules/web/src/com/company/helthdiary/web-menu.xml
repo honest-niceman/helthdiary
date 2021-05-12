@@ -9,5 +9,6 @@
         <item screen="helthdiary_Doctor.browse" caption="mainMsg://menu_config.helthdiary_Doctor.browse"/>
         <item screen="helthdiary_Visit.browse" caption="mainMsg://menu_config.helthdiary_Visit.browse"/>
         <item screen="helthdiary_GraphScreen" caption="mainMsg://menu_config.helthdiary_GraphScreen"/>
+        <item screen="helthdiary_Temperature.browse" caption="mainMsg://menu_config.helthdiary_Temperature.browse"/>
     </menu>
 </menu-config>

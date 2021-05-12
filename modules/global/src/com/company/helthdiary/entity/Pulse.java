@@ -68,4 +68,6 @@ public class Pulse extends StandardEntity {
         this.rate = rate;
     }
 
+
+
 }

@@ -8,5 +8,6 @@
         <class>com.company.helthdiary.entity.Patient</class>
         <class>com.company.helthdiary.entity.Doctor</class>
         <class>com.company.helthdiary.entity.Visit</class>
+        <class>com.company.helthdiary.entity.Temperature</class>
     </persistence-unit>
 </persistence>
