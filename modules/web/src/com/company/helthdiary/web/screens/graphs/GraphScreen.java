@@ -86,23 +86,34 @@ public class GraphScreen extends Screen {
                 notifications.create().withCaption("Check input dates").show();
             } else if (startDate.getValue() != null && endDate.getValue() != null) {
 
+                Date start=startDate.getValue();
+                Date end=endDate.getValue();
+
                 glucoseDl.setQuery("select e from helthdiary_Glucose e where e.user = :user and e.date between :dateFirst and :dateLast");
                 glucoseDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
-                glucoseDl.setParameter("dateFirst", startDate.getValue());
-                glucoseDl.setParameter("dateLast", endDate.getValue());
+                glucoseDl.setParameter("dateFirst", start);
+                glucoseDl.setParameter("dateLast", end);
                 glucoseDl.load();
 
                 pressuresDl.setQuery("select e from helthdiary_Pressure e where e.user = :user and e.date between :dateFirst and :dateLast");
                 pressuresDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
-                pressuresDl.setParameter("dateFirst", startDate.getValue());
-                pressuresDl.setParameter("dateLast", endDate.getValue());
+                pressuresDl.setParameter("dateFirst", start);
+                pressuresDl.setParameter("dateLast", end);
                 pressuresDl.load();
 
                 pulsesDl.setQuery("select e from helthdiary_Pulse e where e.user = :user and e.date between :dateFirst and :dateLast");
                 pulsesDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
-                pulsesDl.setParameter("dateFirst", startDate.getValue());
-                pulsesDl.setParameter("dateLast", endDate.getValue());
+                pulsesDl.setParameter("dateFirst", start);
+                pulsesDl.setParameter("dateLast", end);
                 pulsesDl.load();
+              //  highliteCols();
+
+                temperaturesDl.setQuery("select e from helthdiary_Temperature e where e.user = :user and e.date between :dateFirst and :dateLast");
+                temperaturesDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
+                temperaturesDl.setParameter("dateFirst", start);
+                temperaturesDl.setParameter("dateLast", end);
+                temperaturesDl.load();
+
             }
         }
         catch (NullPointerException ex){
@@ -178,3 +189,36 @@ public class GraphScreen extends Screen {
     }
 
 }
+
+//<chart:serialChart
+//        dataContainer="temperaturesDc"
+//        width="100%"
+//        height="100%"
+//        theme="NONE"
+//        marginRight="70"
+//        autoMarginOffset="20"
+//        categoryField="date"
+//        align="TOP_RIGHT">
+//<chart:balloon cornerRadius="6"/>
+//<chart:valueAxes>
+//<chart:axis axisAlpha="0"/>
+//</chart:valueAxes>
+//<chart:graphs>
+//<chart:graph
+//        bullet="ROUND"
+//        bulletSize="6"
+//        connect="false"
+//        lineColor="#b6d278"
+//        lineThickness="2"
+//        negativeLineColor="#487dac"
+//        valueField="measure"/>
+//</chart:graphs>
+//<chart:chartCursor categoryBalloonDateFormat="DD"
+//        cursorAlpha="0.1"
+//        cursorColor="#000000"
+//        fullWidth="true"
+//        graphBulletSize="2"/>
+//<chart:categoryAxis minPeriod="DAYS"
+//        minorGridEnabled="true"/>
+//<chart:export/>
+//</chart:serialChart>

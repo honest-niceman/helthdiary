@@ -114,6 +114,7 @@
                                   valueWidth="100"/>
                     <chart:graphs>
                         <chart:graph fillAlphas="0.6"
+                                     balloonText="[[rate]]"
                                      colorField="color"
                                      type="COLUMN"
                                      lineAlpha="0.4"
@@ -176,7 +177,7 @@
         </hbox>
 
         <hbox >
-        <vbox >
+        <vbox>
             <label value="msg://" align="TOP_CENTER" height="100%"/>
             <label value="msg://" align="TOP_CENTER" height="100%"/>
             <label value="msg://" align="TOP_CENTER" height="100%"/>
@@ -243,39 +244,61 @@
                                valueZoomable="true"/>
             <chart:export/>
         </chart:serialChart>
-            <chart:serialChart
-                    dataContainer="temperaturesDc"
-                    width="100%"
-                    height="100%"
-                    theme="NONE"
-                    marginRight="70"
-                    autoMarginOffset="20"
-                    categoryField="date">
-                <chart:balloon cornerRadius="6"/>
+        </vbox>
+        <vbox>
+            <label value="msg://" align="TOP_CENTER" height="100%"/>
+            <label value="msg://" align="TOP_CENTER" height="100%"/>
+            <label value="msg://" align="TOP_CENTER" height="100%"/>
+            <label value="msg://Temperature" align="TOP_CENTER" />
+            <chart:serialChart id="lineChart2"
+                               autoMarginOffset="20"
+                               categoryField="date"
+                               dataContainer="temperaturesDc"
+                               marginLeft="40"
+                               marginRight="40"
+
+                               theme="LIGHT">
                 <chart:valueAxes>
-                    <chart:axis axisAlpha="0"/>
+                    <chart:axis id="v11"
+                                axisAlpha="0"
+                                ignoreAxisWidth="true"
+                                position="LEFT"/>
                 </chart:valueAxes>
+                <chart:balloon borderThickness="1"
+                               shadowAlpha="0"/>
                 <chart:graphs>
-                    <chart:graph
-                            balloonText="[[category]]&lt;br&gt;&lt;b&gt;&lt;span style='font-size:14px;'&gt;[[value]] C&lt;/span&gt;&lt;/b&gt;"
-                            bullet="ROUND"
-                            bulletSize="6"
-                            connect="false"
-                            lineColor="#b6d278"
-                            lineThickness="2"
-                            negativeLineColor="#487dac"
-                            valueField="measure"/>
+                    <chart:graph id="g11"
+                                 balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
+                                 bullet="ROUND"
+                                 bulletBorderAlpha="1"
+                                 bulletColor="WHITE"
+                                 bulletSize="5"
+                                 hideBulletsCount="50"
+                                 lineThickness="2"
+                                 title="measure"
+                                 useLineColorForBulletBorder="true"
+                                 valueAxis="v1"
+                                 valueField="measure">
+                        <chart:balloon adjustBorderColor="false"
+                                       color="WHITE"
+                                       drop="true"/>
+                    </chart:graph>
+
                 </chart:graphs>
-                <chart:chartCursor categoryBalloonDateFormat="DD"
-                                   cursorAlpha="0.1"
-                                   cursorColor="#000000"
-                                   fullWidth="true"
-                                   graphBulletSize="2"/>
-                <chart:categoryAxis minPeriod="DAYS"
+                <chart:legend useGraphSettings="true"/>
+                <chart:categoryAxis dashLength="1"
                                     minorGridEnabled="true"/>
+                <chart:chartCursor cursorAlpha="1"
+                                   cursorColor="#258cbb"
+                                   cursorPosition="MOUSE"
+                                   limitToGraph="g1"
+                                   pan="true"
+                                   valueLineAlpha="0.2"
+                                   valueZoomable="true"/>
                 <chart:export/>
             </chart:serialChart>
-        </vbox>
+            </vbox>
     </hbox>
     </layout>
 </window>
+

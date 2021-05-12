@@ -1,2 +1,0 @@
-alter table HELTHDIARY_DOCTOR add constraint FK_HELTHDIARY_DOCTOR_ON_USER foreign key (USER_ID) references SEC_USER(ID);
-create index IDX_HELTHDIARY_DOCTOR_ON_USER on HELTHDIARY_DOCTOR (USER_ID);
