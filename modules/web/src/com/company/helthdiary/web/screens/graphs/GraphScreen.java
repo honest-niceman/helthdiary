@@ -45,13 +45,7 @@ public class GraphScreen extends Screen {
     @Inject
     private CollectionLoader<Patient> patientsDl;
     @Inject
-    private CollectionContainer<Patient> patientsDc;
-    @Inject
     protected TimeSource timeSource;
-    @Inject
-    private DataManager dataManager;
-    @Inject
-    private CollectionContainer<Pressure> pressuresDc;
     @Inject
     private DateField<Date> endDate;
     @Inject
@@ -63,18 +57,20 @@ public class GraphScreen extends Screen {
     public void onInit(InitEvent event) {
         pulsesDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
         pulsesDl.load();
+
         glucoseDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
         glucoseDl.load();
+
         pressuresDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
         pressuresDl.load();
+
         patientsDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
         patientsDl.load();
+
         temperaturesDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
         temperaturesDl.load();
 
-
         highliteCols();
-
     }
 
 
@@ -106,7 +102,7 @@ public class GraphScreen extends Screen {
                 pulsesDl.setParameter("dateFirst", start);
                 pulsesDl.setParameter("dateLast", end);
                 pulsesDl.load();
-              //  highliteCols();
+                highliteCols();
 
                 temperaturesDl.setQuery("select e from helthdiary_Temperature e where e.user = :user and e.date between :dateFirst and :dateLast");
                 temperaturesDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
@@ -189,36 +185,3 @@ public class GraphScreen extends Screen {
     }
 
 }
-
-//<chart:serialChart
-//        dataContainer="temperaturesDc"
-//        width="100%"
-//        height="100%"
-//        theme="NONE"
-//        marginRight="70"
-//        autoMarginOffset="20"
-//        categoryField="date"
-//        align="TOP_RIGHT">
-//<chart:balloon cornerRadius="6"/>
-//<chart:valueAxes>
-//<chart:axis axisAlpha="0"/>
-//</chart:valueAxes>
-//<chart:graphs>
-//<chart:graph
-//        bullet="ROUND"
-//        bulletSize="6"
-//        connect="false"
-//        lineColor="#b6d278"
-//        lineThickness="2"
-//        negativeLineColor="#487dac"
-//        valueField="measure"/>
-//</chart:graphs>
-//<chart:chartCursor categoryBalloonDateFormat="DD"
-//        cursorAlpha="0.1"
-//        cursorColor="#000000"
-//        fullWidth="true"
-//        graphBulletSize="2"/>
-//<chart:categoryAxis minPeriod="DAYS"
-//        minorGridEnabled="true"/>
-//<chart:export/>
-//</chart:serialChart>

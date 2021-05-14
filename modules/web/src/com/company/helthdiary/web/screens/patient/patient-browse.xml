@@ -29,7 +29,7 @@
         <form width="AUTO" height="AUTO">
             <textField id="nameFirstField" caption="msg://First Name" editable="false"/>
             <textField id="nameLastField" caption="msg://Last Name" editable="false"/>
-            <dateField id="dateOfBirthField" caption="msg://Date of birth" editable="false"/>
+            <dateField id="dateOfBirthField" caption="msg://Date of birth" editable="false" width="100%"/>
             <lookupField id="genderField" caption="msg://Gender" editable="false"/>
             <textField id="heightField" caption="msg://Height" editable="false"/>
             <textField id="weightField" caption="msg://Weight" editable="false"/>

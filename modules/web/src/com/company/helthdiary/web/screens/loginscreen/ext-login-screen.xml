@@ -18,5 +18,10 @@
                 </hbox>
             </vbox>
         </vbox>
+        <image id="backgroundImage"
+               scaleMode="COVER"
+               stylename="c-login-background">
+            <relativePath path="VAADIN/brand-login-screen/background.svg"/>
+        </image>
     </layout>
 </window>

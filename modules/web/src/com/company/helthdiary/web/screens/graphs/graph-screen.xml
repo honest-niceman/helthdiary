@@ -58,20 +58,20 @@
 
         <collection id="pressuresDc"
                     class="com.company.helthdiary.entity.Pressure">
-        <view extends="_local"/>
-        <loader id="pressuresDl">
-            <query>
-                <![CDATA[select e from helthdiary_Pressure e]]>
-                <condition>
-                    <and>
-                        <c:jpql>
-                            <c:where>e.user = :user</c:where>
-                        </c:jpql>
-                    </and>
-                </condition>
-            </query>
-        </loader>
-    </collection>
+            <view extends="_local"/>
+            <loader id="pressuresDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Pressure e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.user = :user</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
         <collection id="patientsDc"
                     class="com.company.helthdiary.entity.Patient">
             <view extends="_local">
@@ -95,14 +95,17 @@
 
 
 
-    <layout>
+    <layout spacing="true" margin="true">
 
-        <hbox>
-            <vbox>
+        <hbox spacing="true">
+            <vbox  stylename="well">
+                <label value="msg://Pulse" align="TOP_CENTER" />
                 <chart:serialChart id="Pulse"
                                    categoryField="date"
                                    dataContainer="pulsesDc"
                                    plotAreaBorderAlpha="0"
+                                   marginLeft="0"
+                                   marginTop="0"
                                    theme="LIGHT"
                                    addClassNames="true"
                                    plotAreaFillAlphas="0.1"
@@ -127,178 +130,183 @@
                     </chart:categoryAxis>
                     <chart:export/>
                 </chart:serialChart>
-                <hbox><label value="msg://above normal" align="TOP_CENTER" stylename="#FF0F00"/>
-                <label value="msg://below normal" align="TOP_CENTER" stylename="#FF0F00"/>
-                </hbox>
             </vbox>
 
+            <label width="50px"/>
 
+            <vbox stylename="well" spacing="true">
+                <label value="msg://Glucose" align="TOP_CENTER"/>
+                <chart:serialChart id="Glucose"
+                                   categoryField="date"
+                                   dataContainer="glucosesDc"
+                                   marginLeft="0"
+                                   marginTop="0"
+                                   marginBottom="0"
+                                   plotAreaBorderAlpha="0"
+
+                                   addClassNames="true"
+
+                                   plotAreaFillAlphas="0.1"
+                                   responsive="true"
+                                   startDuration="1"
+
+                                   theme="LIGHT">
+
+
+                    <chart:legend equalWidths="false"
+                                  position="TOP"
+                                  valueAlign="LEFT"
+                                  valueWidth="100"/>
+
+                    <chart:categoryAxis gridPosition="START"/>
+                    <chart:graphs>
+                        <chart:graph fillAlphas="0.57"
+                                     lineAlpha="0.4"
+                                     title="Level"
+                                     type="COLUMN"
+                                     valueField="level"
+                        />
+                    </chart:graphs>
+                    <chart:export/>
+                </chart:serialChart>
+            </vbox>
             <vbox>
-            <label value="msg://Glucose" align="TOP_CENTER"/>
-            <chart:serialChart id="Glucose"
-                               categoryField="date"
-                               dataContainer="glucosesDc"
-                               marginLeft="0"
-                               marginTop="0"
-                               plotAreaBorderAlpha="0"
-
-                               addClassNames="true"
-
-                               plotAreaFillAlphas="0.1"
-                               responsive="true"
-                               startDuration="1"
-
-                               theme="LIGHT">
-
-
-                <chart:legend equalWidths="false"
-                              position="TOP"
-                              valueAlign="LEFT"
-                              valueWidth="100"/>
-
-                <chart:categoryAxis gridPosition="START"/>
-                <chart:graphs>
-                    <chart:graph fillAlphas="0.57"
-                                 lineAlpha="0.4"
-                                 title="Level"
-                                 type="COLUMN"
-                                 valueField="level"
-                    />
-                </chart:graphs>
-                <chart:export/>
-            </chart:serialChart>
-            </vbox>
-            <vbox height="150" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
-                <label value="msg://Input date"/>
-                <dateField id="startDate" property="input Date"/>
-                <dateField id="endDate" property="input Date"/>
-                <button id="filterBtn" caption="msg://Show"/>
+                <vbox height="150" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
+                    <label value="msg://Input date"/>
+                    <dateField id="startDate" property="input Date"/>
+                    <dateField id="endDate" property="input Date"/>
+                    <button id="filterBtn" caption="msg://Show"/>
+                </vbox>
+                <label height="50px"/>
+                <vbox height="150" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
+                    <label icon="CIRCLE" stylename="colored"
+                           value="msg://Indicator above the norm"/>
+                    <label icon="CIRCLE" stylename="colored"
+                           value="msg://Indicator is lower the norm"/>
+                </vbox>
             </vbox>
         </hbox>
 
-        <hbox >
-        <vbox>
-            <label value="msg://" align="TOP_CENTER" height="100%"/>
-            <label value="msg://" align="TOP_CENTER" height="100%"/>
-            <label value="msg://" align="TOP_CENTER" height="100%"/>
-            <label value="msg://Pressure" align="TOP_CENTER" />
-        <chart:serialChart id="lineChart"
-                           autoMarginOffset="20"
-                           categoryField="date"
-                           dataContainer="pressuresDc"
-                           marginLeft="40"
-                           marginRight="40"
+        <label height="5px"/>
 
-                           theme="LIGHT">
-            <chart:valueAxes>
-                <chart:axis id="v1"
-                            axisAlpha="0"
-                            ignoreAxisWidth="true"
-                            position="LEFT"/>
-            </chart:valueAxes>
-            <chart:balloon borderThickness="1"
-                           shadowAlpha="0"/>
-            <chart:graphs>
-                <chart:graph id="g1"
-                             balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
-                             bullet="ROUND"
-                             bulletBorderAlpha="1"
-                             bulletColor="WHITE"
-                             bulletSize="5"
-                             hideBulletsCount="50"
-                             lineThickness="2"
-                             title="upperBp"
-                             useLineColorForBulletBorder="true"
-                             valueAxis="v1"
-                             valueField="upperBp">
-                    <chart:balloon adjustBorderColor="false"
-                                   color="WHITE"
-                                   drop="true"/>
-                </chart:graph>
-                <chart:graph id="g2"
-                             balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
-                             bullet="ROUND"
-                             bulletBorderAlpha="1"
-                             bulletColor="WHITE"
-                             bulletSize="5"
-                             hideBulletsCount="50"
-                             lineThickness="2"
-                             title="lowerBp"
-                             useLineColorForBulletBorder="true"
-                             valueAxis="v2"
-                             valueField="lowerBp">
-                    <chart:balloon adjustBorderColor="false"
-                                   color="WHITE"
-                                   drop="true"/>
-                </chart:graph>
-            </chart:graphs>
-            <chart:legend useGraphSettings="true"/>
-            <chart:categoryAxis dashLength="1"
-                                minorGridEnabled="true"/>
-            <chart:chartCursor cursorAlpha="1"
-                               cursorColor="#258cbb"
-                               cursorPosition="MOUSE"
-                               limitToGraph="g1"
-                               pan="true"
-                               valueLineAlpha="0.2"
-                               valueZoomable="true"/>
-            <chart:export/>
-        </chart:serialChart>
-        </vbox>
-        <vbox>
-            <label value="msg://" align="TOP_CENTER" height="100%"/>
-            <label value="msg://" align="TOP_CENTER" height="100%"/>
-            <label value="msg://" align="TOP_CENTER" height="100%"/>
-            <label value="msg://Temperature" align="TOP_CENTER" />
-            <chart:serialChart id="lineChart2"
-                               autoMarginOffset="20"
-                               categoryField="date"
-                               dataContainer="temperaturesDc"
-                               marginLeft="40"
-                               marginRight="40"
+        <hbox spacing="true" >
 
-                               theme="LIGHT">
-                <chart:valueAxes>
-                    <chart:axis id="v11"
-                                axisAlpha="0"
-                                ignoreAxisWidth="true"
-                                position="LEFT"/>
-                </chart:valueAxes>
-                <chart:balloon borderThickness="1"
-                               shadowAlpha="0"/>
-                <chart:graphs>
-                    <chart:graph id="g11"
-                                 balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
-                                 bullet="ROUND"
-                                 bulletBorderAlpha="1"
-                                 bulletColor="WHITE"
-                                 bulletSize="5"
-                                 hideBulletsCount="50"
-                                 lineThickness="2"
-                                 title="measure"
-                                 useLineColorForBulletBorder="true"
-                                 valueAxis="v1"
-                                 valueField="measure">
-                        <chart:balloon adjustBorderColor="false"
-                                       color="WHITE"
-                                       drop="true"/>
-                    </chart:graph>
+            <vbox stylename="well" spacing="true">
+                <label value="msg://Temperature" align="TOP_CENTER" />
+                <chart:serialChart id="lineChart2"
+                                   autoMarginOffset="20"
+                                   categoryField="date"
+                                   dataContainer="temperaturesDc"
+                                   marginLeft="40"
+                                   marginRight="40"
+                                   theme="LIGHT">
+                    <chart:valueAxes>
+                        <chart:axis id="v11"
+                                    axisAlpha="0"
+                                    ignoreAxisWidth="true"
+                                    position="LEFT"/>
+                    </chart:valueAxes>
+                    <chart:balloon borderThickness="1"
+                                   shadowAlpha="0"/>
+                    <chart:graphs>
+                        <chart:graph id="g11"
+                                     balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
+                                     bullet="ROUND"
+                                     bulletBorderAlpha="1"
+                                     bulletColor="WHITE"
+                                     bulletSize="5"
+                                     hideBulletsCount="50"
+                                     lineThickness="2"
+                                     title="measure"
+                                     useLineColorForBulletBorder="true"
+                                     valueAxis="v1"
+                                     valueField="measure">
+                            <chart:balloon adjustBorderColor="false"
+                                           color="WHITE"
+                                           drop="true"/>
+                        </chart:graph>
 
-                </chart:graphs>
-                <chart:legend useGraphSettings="true"/>
-                <chart:categoryAxis dashLength="1"
-                                    minorGridEnabled="true"/>
-                <chart:chartCursor cursorAlpha="1"
-                                   cursorColor="#258cbb"
-                                   cursorPosition="MOUSE"
-                                   limitToGraph="g1"
-                                   pan="true"
-                                   valueLineAlpha="0.2"
-                                   valueZoomable="true"/>
-                <chart:export/>
-            </chart:serialChart>
+                    </chart:graphs>
+                    <chart:legend useGraphSettings="true"/>
+                    <chart:categoryAxis dashLength="1"
+                                        minorGridEnabled="true"/>
+                    <chart:chartCursor cursorAlpha="1"
+                                       cursorColor="#258cbb"
+                                       cursorPosition="MOUSE"
+                                       limitToGraph="g1"
+                                       pan="true"
+                                       valueLineAlpha="0.2"
+                                       valueZoomable="true"/>
+                    <chart:export/>
+                </chart:serialChart>
             </vbox>
-    </hbox>
+
+            <label width="50px"/>
+
+            <vbox stylename="well" spacing="true" width="100%">
+
+                <label value="msg://Pressure" align="TOP_CENTER" />
+                <chart:serialChart id="lineChart"
+                                   categoryField="date"
+                                   dataContainer="pressuresDc"
+                                   marginLeft="50"
+                                   theme="LIGHT">
+                    <chart:valueAxes>
+                        <chart:axis id="v1"
+                                    axisAlpha="0"
+                                    ignoreAxisWidth="true"
+                                    position="LEFT"/>
+                    </chart:valueAxes>
+                    <chart:balloon borderThickness="1"
+                                   shadowAlpha="0"/>
+                    <chart:graphs>
+                        <chart:graph id="g1"
+                                     balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
+                                     bullet="ROUND"
+                                     bulletBorderAlpha="1"
+                                     bulletColor="WHITE"
+                                     bulletSize="5"
+                                     hideBulletsCount="50"
+                                     lineThickness="2"
+                                     title="upperBp"
+                                     useLineColorForBulletBorder="true"
+                                     valueAxis="v1"
+                                     valueField="upperBp">
+                            <chart:balloon adjustBorderColor="false"
+                                           color="WHITE"
+                                           drop="true"/>
+                        </chart:graph>
+                        <chart:graph id="g2"
+                                     balloonText="&lt;span style=&apos;font-size:18px;&apos;&gt;[[value]]&lt;/span&gt;"
+                                     bullet="ROUND"
+                                     bulletBorderAlpha="1"
+                                     bulletColor="WHITE"
+                                     bulletSize="5"
+                                     hideBulletsCount="50"
+                                     lineThickness="2"
+                                     title="lowerBp"
+                                     useLineColorForBulletBorder="true"
+                                     valueAxis="v2"
+                                     valueField="lowerBp">
+                            <chart:balloon adjustBorderColor="false"
+                                           color="WHITE"
+                                           drop="true"/>
+                        </chart:graph>
+                    </chart:graphs>
+                    <chart:legend useGraphSettings="true"/>
+                    <chart:categoryAxis dashLength="1"
+                                        minorGridEnabled="true"/>
+                    <chart:chartCursor cursorAlpha="1"
+                                       cursorColor="#258cbb"
+                                       cursorPosition="MOUSE"
+                                       limitToGraph="g1"
+                                       pan="true"
+                                       valueLineAlpha="0.2"
+                                       valueZoomable="true"/>
+                    <chart:export/>
+                </chart:serialChart>
+            </vbox>
+        </hbox>
     </layout>
 </window>
 
