@@ -33,10 +33,10 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="firstname"/>
-                <column id="lastname"/>
-                <column id="speciality"/>
-                <column id="education"/>
+                <column id="firstname" caption="First Name"/>
+                <column id="lastname" caption="Last Name"/>
+                <column id="speciality" caption="Speciality"/>
+                <column id="education" caption="Education"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

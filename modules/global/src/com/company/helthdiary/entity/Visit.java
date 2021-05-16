@@ -25,14 +25,54 @@ public class Visit extends StandardEntity {
     private Doctor doctor;
 
     @NotNull
+    @Column(name = "TYPE_", nullable = false)
+    private String type;
+
+    @NotNull
     @Column(name = "START_", nullable = false)
     @Future
     private LocalDateTime start;
 
-    @NotNull
-    @Column(name = "TYPE_", nullable = false)
-    private Integer type;
+    @Transient
+    @MetaProperty(related = "doctor")
+    private String doctorName;
 
+    @Transient
+    @MetaProperty(related = "type")
+    private String doctorType;
+
+    public String getDoctorType() {
+        return Optional.ofNullable(getType())
+                .map(VisitType::getStyleName)
+                .orElse("");
+    }
+
+    public String getDoctorName() {
+        return Optional.ofNullable(getDoctor())
+                .map(Doctor::getFirstname)
+                .orElse("");
+    }
+
+    public void setType(VisitType type) {
+        this.type = type == null ? null : type.getId();
+    }
+
+    public VisitType getType() {
+        return type == null ? null : VisitType.fromId(type);
+    }
+
+    /*@MetaProperty(related = "doctor")
+    public String getDoctorName() {
+        return Optional.ofNullable(getDoctor())
+                .map(Doctor::getFirstname)
+                .orElse("");
+    }
+    @MetaProperty(related = "type")
+    public String getTypeStyle() {
+        return Optional.ofNullable(getType())
+                .map(VisitType::getStyleName)
+                .orElse("");
+    }*/
 
     public Patient getPatient() {
         return patient;
@@ -48,14 +88,6 @@ public class Visit extends StandardEntity {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
-    }
-
-    public TypeOfVisit getType() {
-        return type == null ? null : TypeOfVisit.fromId(type);
-    }
-
-    public void setType(TypeOfVisit type) {
-        this.type = type == null ? null : type.getId();
     }
 
     @MetaProperty(related = {"start"})

@@ -40,9 +40,9 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="rate"/>
-                <column id="description"/>
-                <column id="date"/>
+                <column id="rate" caption="Rate"/>
+                <column id="date" caption="Date"/>
+                <column id="description" caption="Description"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

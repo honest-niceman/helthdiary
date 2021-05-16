@@ -36,8 +36,17 @@
             <properties include=".*"/>
         </filter>
         <tabSheet id="visitsTables">
-            <tab id="caledarTab" caption="Tab" margin="true,false,false,false" spacing="true" expand="calendar">
-                <calendar id="calendar" dataContainer="visitsDc" endDateProperty="end" startDateProperty="start"/>
+            <tab id="caledarTab"
+                 caption="Tab"
+                 margin="true,false,false,false"
+                 spacing="true"
+                 expand="calendar">
+                <calendar id="calendar"
+                          dataContainer="visitsDc"
+                          endDateProperty="end"
+                          startDateProperty="start"
+                          stylenameProperty="doctorType"
+                          captionProperty="doctorName"/>
             </tab>
             <tab id="tableTab" caption="msg://tableTab.caption" expand="visitsTable">
                 <groupTable id="visitsTable"

@@ -99,7 +99,7 @@
 
         <hbox spacing="true">
             <vbox  stylename="well">
-                <label value="msg://Pulse" align="TOP_CENTER" />
+                <label icon="font-icon:HEARTBEAT" stylename="font-style" value="msg://Pulse" align="TOP_CENTER" />
                 <chart:serialChart id="Pulse"
                                    categoryField="date"
                                    dataContainer="pulsesDc"
@@ -135,7 +135,7 @@
             <label width="50px"/>
 
             <vbox stylename="well" spacing="true">
-                <label value="msg://Glucose" align="TOP_CENTER"/>
+                <label icon="font-icon:TINT" value="msg://Glucose" stylename="font-style" align="TOP_CENTER"/>
                 <chart:serialChart id="Glucose"
                                    categoryField="date"
                                    dataContainer="glucosesDc"
@@ -172,17 +172,18 @@
             </vbox>
             <vbox>
                 <vbox height="150" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
-                    <label value="msg://Input date"/>
+                    <label icon="font-icon:FILTER"  stylename="font-style-1" value="msg://Input date"/>
                     <dateField id="startDate" property="input Date"/>
                     <dateField id="endDate" property="input Date"/>
                     <button id="filterBtn" caption="msg://Show"/>
                 </vbox>
                 <label height="50px"/>
-                <vbox height="150" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
-                    <label icon="CIRCLE" stylename="colored"
-                           value="msg://Indicator above the norm"/>
-                    <label icon="CIRCLE" stylename="colored"
-                           value="msg://Indicator is lower the norm"/>
+                <vbox height="100" htmlSanitizerEnabled="false" align="TOP_RIGHT" spacing="true" margin="true" stylename="card">
+                    <hbox><label icon="CIRCLE" stylename="my-color1"/>
+                    <label value="msg://Indicator above the norm//"/> </hbox>
+                    <hbox><label icon="CIRCLE" stylename="my-color2"/>
+                        <label value="msg://Indicator is lower the norm"/>
+                    </hbox>
                 </vbox>
             </vbox>
         </hbox>
@@ -192,7 +193,7 @@
         <hbox spacing="true" >
 
             <vbox stylename="well" spacing="true">
-                <label value="msg://Temperature" align="TOP_CENTER" />
+                <label icon="font-icon:THERMOMETER_2" stylename="font-style" value="msg://Temperature" align="TOP_CENTER" />
                 <chart:serialChart id="lineChart2"
                                    autoMarginOffset="20"
                                    categoryField="date"
@@ -245,7 +246,7 @@
 
             <vbox stylename="well" spacing="true" width="100%">
 
-                <label value="msg://Pressure" align="TOP_CENTER" />
+                <label icon="font-icon:TACHOMETER" value="msg://Pressure" align="TOP_CENTER" stylename="font-style"/>
                 <chart:serialChart id="lineChart"
                                    categoryField="date"
                                    dataContainer="pressuresDc"
@@ -283,6 +284,7 @@
                                      bulletColor="WHITE"
                                      bulletSize="5"
                                      hideBulletsCount="50"
+                                     lineColor="LIGHTGREEN"
                                      lineThickness="2"
                                      title="lowerBp"
                                      useLineColorForBulletBorder="true"

@@ -132,8 +132,8 @@ create table HELTHDIARY_VISIT (
     --
     PATIENT_ID uuid not null,
     DOCTOR_ID uuid not null,
+    TYPE_ varchar(50) not null,
     START_ timestamp not null,
-    TYPE_ integer not null,
     --
     primary key (ID)
 )^

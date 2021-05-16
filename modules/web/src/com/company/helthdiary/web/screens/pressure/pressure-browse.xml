@@ -48,9 +48,9 @@
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="pressuresTable.create"/>
+                <button id="createBtn" action="pressuresTable.create" stylename="friendly"/>
                 <button id="editBtn" action="pressuresTable.edit"/>
-                <button id="removeBtn" action="pressuresTable.remove"/>
+                <button id="removeBtn" action="pressuresTable.remove" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
