@@ -39,7 +39,7 @@ public enum VisitType implements EnumClass<String> {
     }
 
     public String getStyleName() {
-        return styleName;
+        return id;
     }
 
     public String getIcon() {

@@ -45,8 +45,10 @@
                           dataContainer="visitsDc"
                           endDateProperty="end"
                           startDateProperty="start"
-                          stylenameProperty="doctorType"
-                          captionProperty="doctorName"/>
+                          stylenameProperty="doctorName"
+                          captionProperty="doctorType"
+                          lastVisibleHourOfDay="18"
+                          firstVisibleHourOfDay="8"/>
             </tab>
             <tab id="tableTab" caption="msg://tableTab.caption" expand="visitsTable">
                 <groupTable id="visitsTable"
