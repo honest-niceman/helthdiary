@@ -7,7 +7,9 @@
     <data readOnly="true">
         <collection id="patientsDc"
                     class="com.company.helthdiary.entity.Patient">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="user" view="_minimal"/>
+            </view>
             <loader id="patientsDl">
                 <query>
                     <![CDATA[select e from helthdiary_Patient e]]>

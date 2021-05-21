@@ -24,6 +24,7 @@
                     <property name="height"/>
                     <property name="weight"/>
                     <property name="calorie"/>
+                    <property name="user" view="_minimal"/>
                 </property>
                 <property name="doctor" view="_minimal"/>
             </view>
