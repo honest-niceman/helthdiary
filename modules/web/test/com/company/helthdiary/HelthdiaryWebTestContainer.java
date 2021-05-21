@@ -10,10 +10,8 @@ public class HelthdiaryWebTestContainer extends TestContainer {
     public HelthdiaryWebTestContainer() {
         appComponents = Arrays.asList(
                 "com.haulmont.cuba",
-                "com.haulmont.addon.restapi",
-                "com.haulmont.reports",
-                "com.haulmont.charts",
-                "com.haulmont.addon.helium");
+                "com.haulmont.addon.helium",
+                "com.haulmont.charts");
         appPropertiesFiles = Arrays.asList(
                 // List the files defined in your web.xml
                 // in appPropertiesConfig context parameter of the web module
