@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="mainMsg://loginWindow.caption"
-        messagesPack="com.company.helthdiary.web.screens">
+        messagesPack="com.company.helthdiary.web.screens.loginscreen">
     <actions>
         <action id="submit"
                 caption="mainMsg://loginWindow.okButton"
@@ -23,8 +23,9 @@
                            align="MIDDLE_LEFT"
                            height="AUTO"
                            scaleMode="SCALE_DOWN"
-                           stylename="c-login-icon"
-                           width="AUTO"/>
+                           width="AUTO"
+                           visible="false">
+                    </image>
                     <label id="welcomeLabel"
                            align="MIDDLE_LEFT"
                            stylename="c-login-caption"
