@@ -5,4 +5,7 @@
         <property name="user" view="_minimal"/>
     </view>
     <view entity="helthdiary_Visit" name="visit-view" extends="_local"/>
+    <view entity="helthdiary_Patient" name="patient-with-user" extends="_local">
+        <property name="user" view="_minimal"/>
+    </view>
 </views>

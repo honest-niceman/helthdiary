@@ -12,6 +12,8 @@
         <property name="remoteServices">
             <map>
                 <entry key="helthdiary_RegistrationService" value="com.company.helthdiary.service.RegistrationService"/>
+                <entry key="helthdiary_PatientGetterService"
+                       value="com.company.helthdiary.service.PatientGetterService"/>
             </map>
         </property>
     </bean>
