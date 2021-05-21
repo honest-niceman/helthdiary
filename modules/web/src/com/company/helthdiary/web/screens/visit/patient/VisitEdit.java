@@ -1,9 +1,8 @@
-package com.company.helthdiary.web.screens.visit;
+package com.company.helthdiary.web.screens.visit.patient;
 
 import com.company.helthdiary.entity.Patient;
 import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.helthdiary.entity.Visit;

@@ -1,4 +1,4 @@
-package com.company.helthdiary.web.screens.visit;
+package com.company.helthdiary.web.screens.visit.patient;
 
 import com.haulmont.cuba.gui.screen.*;
 import com.company.helthdiary.entity.Visit;

@@ -2,7 +2,7 @@
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://visitEdit.caption"
         focusComponent="form"
-        messagesPack="com.company.helthdiary.web.screens.visit">
+        messagesPack="com.company.helthdiary.web.screens.visit.patient">
     <data>
         <instance id="visitDc"
                   class="com.company.helthdiary.entity.Visit">

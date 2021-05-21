@@ -3,7 +3,7 @@
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://visitBrowse.caption"
         focusComponent="visitsTable"
-        messagesPack="com.company.helthdiary.web.screens.visit">
+        messagesPack="com.company.helthdiary.web.screens.visit.patient">
     <data readOnly="true">
         <collection id="visitsDc"
                     class="com.company.helthdiary.entity.Visit">

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
-    <view entity="helthdiary_Doctor" name="doctor-view" extends="_local"/>
+    <view entity="helthdiary_Doctor" name="doctor-view" extends="_local">
+        <property name="user" view="_minimal"/>
+    </view>
     <view entity="helthdiary_Visit" name="visit-view" extends="_local"/>
 </views>
