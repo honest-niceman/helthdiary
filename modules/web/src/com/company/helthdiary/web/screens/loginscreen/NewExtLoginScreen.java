@@ -9,10 +9,9 @@ import com.haulmont.cuba.web.app.login.LoginScreen;
 import javax.inject.Inject;
 
 
-@UiController("ext-login")
-@UiDescriptor("ext-login-screen.xml")
-public class ExtLoginScreen extends LoginScreen {
-
+@UiController("new-login")
+@UiDescriptor("new-ext-login-screen.xml")
+public class NewExtLoginScreen extends LoginScreen {
     /**
      * Injected component from the base screen.
      */
