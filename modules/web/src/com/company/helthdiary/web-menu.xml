@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-helthdiary" insertBefore="administration" caption="mainMsg://menu_config.application-helthdiary">
-        <item screen="helthdiary_Pressure.browse" caption="mainMsg://menu_config.helthdiary_Pressure.browse"/>
-        <item screen="helthdiary_Glucose.browse" caption="mainMsg://menu_config.helthdiary_Glucose.browse"/>
-        <item screen="helthdiary_Pulse.browse" caption="mainMsg://menu_config.helthdiary_Pulse.browse"/>
-        <item screen="helthdiary_Patient.browse" caption="mainMsg://menu_config.helthdiary_Patient.browse"/>
-        <item screen="helthdiary_Doctor.browse" caption="mainMsg://menu_config.helthdiary_Doctor.browse"/>
-        <item screen="helthdiary_Visit.browse" caption="mainMsg://menu_config.helthdiary_Visit.browse"/>
-        <item screen="helthdiary_GraphScreen" caption="Reports"/>
-        <item screen="helthdiary_Temperature.browse" caption="mainMsg://menu_config.helthdiary_Temperature.browse"/>
+
+        <!--Patient screens-->
+        <menu id="health_indicators" caption="mainMsg://menu_config.health_indicators">
+            <item screen="helthdiary_Temperature.browse" caption="mainMsg://menu_config.helthdiary_Temperature.browse"/>
+            <item screen="helthdiary_Glucose.browse" caption="mainMsg://menu_config.helthdiary_Glucose.browse"/>
+            <item screen="helthdiary_Pressure.browse" caption="mainMsg://menu_config.helthdiary_Pressure.browse"/>
+            <item screen="helthdiary_Pulse.browse" caption="mainMsg://menu_config.helthdiary_Pulse.browse"/>
+        </menu>
+        <item screen="helthdiary_GraphScreen" caption="mainMsg://reports"/>
         <item screen="helthdiary_Doctor.browse1" caption="mainMsg://menu_config.helthdiary_Doctor.browse1"/>
+        <item screen="helthdiary_Visit.browse" caption="mainMsg://menu_config.helthdiary_Visit.browse"/>
+        <item class="com.company.helthdiary.web.screens.patientscreens.aboutme.AboutMeOpener" caption="mainMsg://aboutMe"/>
+
+        <separator/>
+
+        <!-- Administrator screens -->
+        <item screen="helthdiary_Doctor.browse" caption="mainMsg://menu_config.helthdiary_Doctor.browse"/>
+
+        <!-- Doctor screens -->
         <item screen="helthdiary_All_Patients.browse" caption="mainMsg://menu_config.helthdiary_All_Patients.browse"/>
         <item screen="helthdiary_DoctorVisit.browse" caption="mainMsg://menu_config.helthdiary_DoctorVisit.browse"/>
     </menu>
