@@ -2,12 +2,12 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="helthdiary" transaction-type="RESOURCE_LOCAL">
 
-        <class>com.company.helthdiary.entity.Glucose</class>
-        <class>com.company.helthdiary.entity.Pressure</class>
-        <class>com.company.helthdiary.entity.Pulse</class>
-        <class>com.company.helthdiary.entity.Patient</class>
-        <class>com.company.helthdiary.entity.Doctor</class>
-        <class>com.company.helthdiary.entity.Visit</class>
-        <class>com.company.helthdiary.entity.Temperature</class>
+        <class>com.company.helthdiary.entity.patient.Glucose</class>
+        <class>com.company.helthdiary.entity.patient.Pressure</class>
+        <class>com.company.helthdiary.entity.patient.Pulse</class>
+        <class>com.company.helthdiary.entity.patient.Patient</class>
+        <class>com.company.helthdiary.entity.doctor.Doctor</class>
+        <class>com.company.helthdiary.entity.visit.Visit</class>
+        <class>com.company.helthdiary.entity.patient.Temperature</class>
     </persistence-unit>
 </persistence>

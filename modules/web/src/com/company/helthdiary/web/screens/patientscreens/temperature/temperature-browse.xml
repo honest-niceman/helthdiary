@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="mainMsg://temperatureBrowse.caption"
+        focusComponent="temperaturesTable"
+        messagesPack="com.company.helthdiary.web">
+    <data readOnly="true">
+        <collection id="temperaturesDc"
+                    class="com.company.helthdiary.entity.patient.Temperature">
+            <view extends="_local"/>
+            <loader id="temperaturesDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Temperature e where e.user = :user]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="temperaturesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="temperaturesTable"
+                dataLoader="temperaturesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="temperaturesTable"
+                    width="100%"
+                    dataContainer="temperaturesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="measure"/>
+                <column id="date"/>
+                <column id="description"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="temperaturesTable.create"/>
+                <button id="editBtn" action="temperaturesTable.edit"/>
+                <button id="removeBtn" action="temperaturesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,6 +1,6 @@
 package com.company.helthdiary.web.screenoptions;
 
-import com.company.helthdiary.entity.Patient;
+import com.company.helthdiary.entity.patient.Patient;
 import com.haulmont.cuba.gui.screen.ScreenOptions;
 
 public class SelectedPatient implements ScreenOptions {

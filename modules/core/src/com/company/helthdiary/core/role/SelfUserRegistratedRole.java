@@ -1,6 +1,8 @@
 package com.company.helthdiary.core.role;
 
-import com.company.helthdiary.entity.*;
+import com.company.helthdiary.entity.doctor.Doctor;
+import com.company.helthdiary.entity.patient.*;
+import com.company.helthdiary.entity.visit.Visit;
 import com.haulmont.cuba.security.app.role.AnnotatedRoleDefinition;
 import com.haulmont.cuba.security.app.role.annotation.EntityAccess;
 import com.haulmont.cuba.security.app.role.annotation.EntityAttributeAccess;
