@@ -6,10 +6,14 @@
     <data readOnly="true">
         <collection id="pressuresDc"
                     class="com.company.helthdiary.entity.patient.Pressure">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal">
+                    <property name="user" view="_minimal"/>
+                </property>
+            </view>
             <loader id="pressuresDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Pressure e where e.user = :user]]>
+                    <![CDATA[select e from helthdiary_Pressure e where e.patient = :patient]]>
                 </query>
             </loader>
         </collection>
@@ -18,6 +22,7 @@
                 width="800"/>
     <layout expand="pressuresTable"
             spacing="true">
+        <textArea id="textArea"/>
         <filter id="filter"
                 applyTo="pressuresTable"
                 dataLoader="pressuresDl">
@@ -43,6 +48,8 @@
                 <button id="createBtn" action="pressuresTable.create" stylename="friendly"/>
                 <button id="editBtn" action="pressuresTable.edit"/>
                 <button id="removeBtn" action="pressuresTable.remove" stylename="danger"/>
+                <button id="btn" caption="Generate"/>
+                <button id="showScript" caption="Show script"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

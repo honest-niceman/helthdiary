@@ -7,17 +7,12 @@
     <data readOnly="true">
         <collection id="glucoseDc"
                     class="com.company.helthdiary.entity.patient.Glucose">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal"/>
+            </view>
             <loader id="glucoseDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Glucose e]]>
-                    <condition>
-                        <and>
-                            <c:jpql>
-                                <c:where>e.user = :user</c:where>
-                            </c:jpql>
-                        </and>
-                    </condition>
+                    <![CDATA[select e from helthdiary_Glucose e where e.patient = :patient]]>
                 </query>
             </loader>
         </collection>
@@ -26,6 +21,7 @@
                 width="800"/>
     <layout expand="glucosesTable"
             spacing="true">
+        <textArea id="textArea"/>
         <filter id="filter"
                 applyTo="glucosesTable"
                 dataLoader="glucoseDl">
@@ -41,6 +37,7 @@
             </actions>
             <columns>
                 <column id="level"/>
+                <column id="beforeFood"/>
                 <column id="description"/>
                 <column id="date"/>
             </columns>
@@ -50,6 +47,8 @@
                 <button id="createBtn" action="glucosesTable.create"/>
                 <button id="editBtn" action="glucosesTable.edit"/>
                 <button id="removeBtn" action="glucosesTable.remove"/>
+                <button id="btn" caption="Generate"/>
+                <button id="showScript" caption="Show script"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

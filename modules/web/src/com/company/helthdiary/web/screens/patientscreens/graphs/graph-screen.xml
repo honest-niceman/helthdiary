@@ -6,51 +6,56 @@
     <data readOnly="true">
         <collection id="pulsesDc"
                     class="com.company.helthdiary.entity.patient.Pulse">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal">
+                    <property name="user" view="_minimal"/>
+                </property>
+            </view>
             <loader id="pulsesDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Pulse e where e.user = :user]]>
+                    <![CDATA[select e from helthdiary_Pulse e where e.patient = :patient order by e.date]]>
                 </query>
             </loader>
         </collection>
 
         <collection id="temperaturesDc"
                     class="com.company.helthdiary.entity.patient.Temperature">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal">
+                    <property name="user" view="_minimal"/>
+                </property>
+            </view>
             <loader id="temperaturesDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Temperature e where e.user = :user]]>
+                    <![CDATA[select e from helthdiary_Temperature e where e.patient = :patient order by e.date]]>
                 </query>
             </loader>
         </collection>
 
         <collection id="glucosesDc"
                     class="com.company.helthdiary.entity.patient.Glucose">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal">
+                    <property name="user" view="_minimal"/>
+                </property>
+            </view>
             <loader id="glucoseDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Glucose e where e.user = :user]]>
+                    <![CDATA[select e from helthdiary_Glucose e where e.patient = :patient order by e.date]]>
                 </query>
             </loader>
         </collection>
 
         <collection id="pressuresDc"
                     class="com.company.helthdiary.entity.patient.Pressure">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal">
+                    <property name="user" view="_minimal"/>
+                </property>
+            </view>
             <loader id="pressuresDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Pressure e where e.user = :user]]>
-                </query>
-            </loader>
-        </collection>
-        <collection id="patientsDc"
-                    class="com.company.helthdiary.entity.patient.Patient">
-            <view extends="_local">
-                <property name="user" view="_minimal"/>
-            </view>
-            <loader id="patientsDl">
-                <query>
-                    <![CDATA[select e from helthdiary_Patient e where e.user = :user]]>
+                    <![CDATA[select e from helthdiary_Pressure e where e.patient = :patient order by e.date]]>
                 </query>
             </loader>
         </collection>
@@ -60,18 +65,22 @@
 
         <hbox spacing="true">
             <vbox  stylename="well">
-                <label icon="font-icon:HEARTBEAT" stylename="font-style" value="Pulse" align="TOP_CENTER" />
+                <label icon="font-icon:HEARTBEAT"
+                       stylename="font-style"
+                       value="Pulse"
+                       align="TOP_CENTER" />
                 <chart:serialChart id="pulseSerialChart"
+                                   autoMarginOffset="20"
+                                   marginLeft="40"
+                                   marginRight="40"
                                    categoryField="date"
                                    dataContainer="pulsesDc"
                                    plotAreaBorderAlpha="0"
-                                   marginLeft="0"
-                                   marginTop="0"
                                    theme="LIGHT"
                                    addClassNames="true"
                                    plotAreaFillAlphas="0.1"
                                    responsive="true"
-                                   startDuration="1">
+                                   startDuration="3">
                     <chart:legend equalWidths="false"
                                   position="TOP"
                                   valueAlign="LEFT"
@@ -98,22 +107,17 @@
             <vbox stylename="well" spacing="true">
                 <label icon="font-icon:TINT" value="Glucose" stylename="font-style" align="TOP_CENTER"/>
                 <chart:serialChart id="Glucose"
+                                   autoMarginOffset="20"
+                                   marginLeft="40"
+                                   marginRight="40"
                                    categoryField="date"
                                    dataContainer="glucosesDc"
-                                   marginLeft="0"
-                                   marginTop="0"
-                                   marginBottom="0"
                                    plotAreaBorderAlpha="0"
-
                                    addClassNames="true"
-
                                    plotAreaFillAlphas="0.1"
                                    responsive="true"
-                                   startDuration="1"
-
+                                   startDuration="3"
                                    theme="LIGHT">
-
-
                     <chart:legend equalWidths="false"
                                   position="TOP"
                                   valueAlign="LEFT"
@@ -157,10 +161,10 @@
                 <label icon="font-icon:THERMOMETER_2" stylename="font-style" value="Temperature" align="TOP_CENTER" />
                 <chart:serialChart id="lineChart2"
                                    autoMarginOffset="20"
-                                   categoryField="date"
-                                   dataContainer="temperaturesDc"
                                    marginLeft="40"
                                    marginRight="40"
+                                   categoryField="date"
+                                   dataContainer="temperaturesDc"
                                    theme="LIGHT">
                     <chart:valueAxes>
                         <chart:axis id="v11"

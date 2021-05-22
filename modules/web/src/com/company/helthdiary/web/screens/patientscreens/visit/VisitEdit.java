@@ -1,6 +1,7 @@
 package com.company.helthdiary.web.screens.patientscreens.visit;
 
 import com.company.helthdiary.entity.patient.Patient;
+import com.company.helthdiary.service.PatientGetterService;
 import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.UserSessionSource;
@@ -15,18 +16,8 @@ import java.util.UUID;
 @EditedEntityContainer("visitDc")
 @LoadDataBeforeShow
 public class VisitEdit extends StandardEditor<Visit> {
-    @Inject
-    private DataManager dataManager;
-
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
-        UUID id = AppBeans.get(UserSessionSource.class).getUserSession().getUser().getId();
-
-        Patient patient = dataManager.load(Patient.class)
-                .query("select e from helthdiary_Patient e where e.user.id = :id")
-                .parameter("id", id)
-                .one();
-
-        getEditedEntity().setPatient(patient);
+        getEditedEntity().setPatient(AppBeans.get(PatientGetterService.class).getPatient());
     }
 }

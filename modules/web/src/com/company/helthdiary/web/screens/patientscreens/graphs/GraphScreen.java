@@ -1,6 +1,7 @@
 package com.company.helthdiary.web.screens.patientscreens.graphs;
 
 import com.company.helthdiary.entity.patient.*;
+import com.company.helthdiary.service.PatientGetterService;
 import com.company.helthdiary.web.screenoptions.SelectedPatient;
 import com.haulmont.charts.gui.components.charts.SerialChart;
 import com.haulmont.charts.gui.data.DataProvider;
@@ -16,6 +17,7 @@ import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionLoader;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.security.entity.User;
+import com.haulmont.cuba.web.App;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
@@ -41,8 +43,6 @@ public class GraphScreen extends Screen {
     @Inject
     private SerialChart pulseSerialChart;
     @Inject
-    private CollectionLoader<Patient> patientsDl;
-    @Inject
     protected TimeSource timeSource;
     @Inject
     private DateField<Date> endDate;
@@ -52,7 +52,6 @@ public class GraphScreen extends Screen {
     private CollectionLoader<Temperature> temperaturesDl;
 
     private Patient patient;
-    private User user;
 
     @Subscribe
     public void onInit(InitEvent event) {
@@ -88,56 +87,52 @@ public class GraphScreen extends Screen {
         ScreenOptions options = event.getOptions();
         if (options instanceof SelectedPatient) {
             patient = ((SelectedPatient) options).getPatient();
-            user = patient.getUser();
         } else {
-            patientsDl.setParameter("user", AppBeans.get(UserSessionSource.class).getUserSession().getUser());
-            patientsDl.load();
-            patient = patientsDl.getContainer().getItems().get(0);
-            user = AppBeans.get(UserSessionSource.class).getUserSession().getUser();
+            patient = AppBeans.get(PatientGetterService.class).getPatient();
         }
     }
 
     private void initLoaders(){
-        pulsesDl.setParameter("user", user);
+        pulsesDl.setParameter("patient", patient);
         pulsesDl.load();
 
-        glucoseDl.setParameter("user", user);
+        glucoseDl.setParameter("patient", patient);
         glucoseDl.load();
 
-        pressuresDl.setParameter("user", user);
+        pressuresDl.setParameter("patient", patient);
         pressuresDl.load();
 
-        temperaturesDl.setParameter("user", user);
+        temperaturesDl.setParameter("patient", patient);
         temperaturesDl.load();
     }
 
     private void loadGlucoses(Date start, Date end) {
-        glucoseDl.setQuery("select e from helthdiary_Glucose e where e.user = :user and e.date between :dateFirst and :dateLast");
-        glucoseDl.setParameter("user", user);
+        glucoseDl.setQuery("select e from helthdiary_Glucose e where e.patient = :patient and e.date between :dateFirst and :dateLast order by e.date");
+        glucoseDl.setParameter("patient", patient);
         glucoseDl.setParameter("dateFirst", start);
         glucoseDl.setParameter("dateLast", end);
         glucoseDl.load();
     }
 
     private void loadPressuress(Date start, Date end) {
-        pressuresDl.setQuery("select e from helthdiary_Pressure e where e.user = :user and e.date between :dateFirst and :dateLast");
-        pressuresDl.setParameter("user", user);
+        pressuresDl.setQuery("select e from helthdiary_Pressure e where e.patient = :patient and e.date between :dateFirst and :dateLast order by e.date");
+        pressuresDl.setParameter("patient", patient);
         pressuresDl.setParameter("dateFirst", start);
         pressuresDl.setParameter("dateLast", end);
         pressuresDl.load();
     }
 
     private void loadPulses(Date start, Date end) {
-        pulsesDl.setQuery("select e from helthdiary_Pulse e where e.user = :user and e.date between :dateFirst and :dateLast");
-        pulsesDl.setParameter("user", user);
+        pulsesDl.setQuery("select e from helthdiary_Pulse e where e.patient = :patient and e.date between :dateFirst and :dateLast order by e.date");
+        pulsesDl.setParameter("patient", patient);
         pulsesDl.setParameter("dateFirst", start);
         pulsesDl.setParameter("dateLast", end);
         pulsesDl.load();
     }
 
     private void loadTemperatures(Date start, Date end) {
-        temperaturesDl.setQuery("select e from helthdiary_Temperature e where e.user = :user and e.date between :dateFirst and :dateLast");
-        temperaturesDl.setParameter("user", user);
+        temperaturesDl.setQuery("select e from helthdiary_Temperature e where e.patient = :patient and e.date between :dateFirst and :dateLast order by e.date");
+        temperaturesDl.setParameter("patient", patient);
         temperaturesDl.setParameter("dateFirst", start);
         temperaturesDl.setParameter("dateLast", end);
         temperaturesDl.load();

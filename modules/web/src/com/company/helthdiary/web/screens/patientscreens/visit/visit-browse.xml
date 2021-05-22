@@ -13,7 +13,17 @@
             </view>
             <loader id="visitsDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Visit e where e.patient.user = :patientUser]]>
+                    <![CDATA[select e from helthdiary_Visit e where e.patient = :patient order by e.start]]>
+                </query>
+            </loader>
+        </collection>
+
+        <collection id="doctorsDc"
+                    class="com.company.helthdiary.entity.doctor.Doctor">
+            <view extends="_local"/>
+            <loader id="doctorsDl">
+                <query>
+                    <![CDATA[select e from helthdiary_Doctor e]]>
                 </query>
             </loader>
         </collection>
@@ -27,6 +37,11 @@
                 dataLoader="visitsDl">
             <properties include=".*"/>
         </filter>
+        <hbox spacing="true">
+            <button id="btn" caption="Generate visits"/>
+            <button id="prevWeek" caption="Previous week"/>
+            <button id="nextWeek" caption="Next week"/>
+        </hbox>
         <tabSheet id="visitsTables">
             <tab id="caledarTab"
                  caption="Tab"
@@ -37,10 +52,10 @@
                           dataContainer="visitsDc"
                           endDateProperty="end"
                           startDateProperty="start"
-                          stylenameProperty="doctorName"
-                          captionProperty="doctorType"
-                          lastVisibleHourOfDay="18"
-                          firstVisibleHourOfDay="8"/>
+                          stylenameProperty="stylename"
+                          captionProperty="doctorName"
+                          lastVisibleHourOfDay="24"
+                          firstVisibleHourOfDay="0"/>
             </tab>
             <tab id="tableTab" caption="tableTab.caption" expand="visitsTable">
                 <groupTable id="visitsTable"

@@ -4,14 +4,6 @@
         focusComponent="visitsTable"
         messagesPack="com.company.helthdiary.web">
     <data readOnly="true">
-        <collection id="doctorDc"
-                    class="com.company.helthdiary.entity.doctor.Doctor">
-            <loader id="doctorLoader">
-                <query>
-                    <![CDATA[select e from helthdiary_Doctor e where e.user = :user]]>
-                </query>
-            </loader>
-        </collection>
         <collection id="visitsDc"
                     class="com.company.helthdiary.entity.visit.Visit">
             <view extends="_local">
@@ -29,7 +21,7 @@
             </view>
             <loader id="visitsDl">
                 <query>
-                    <![CDATA[select e from helthdiary_Visit e where e.doctor = :doctor]]>
+                    <![CDATA[select e from helthdiary_Visit e where e.doctor.user = :user]]>
                 </query>
             </loader>
         </collection>
@@ -46,11 +38,6 @@
         <groupTable id="visitsTable"
                     width="100%"
                     dataContainer="visitsDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
             <columns>
                 <column id="start"/>
                 <column id="end"/>
@@ -64,12 +51,6 @@
                 <column id="patient.calorie"/>
             </columns>
             <rowsCount/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="visitsTable.create"/>
-                <button id="editBtn" action="visitsTable.edit"/>
-                <button id="removeBtn" action="visitsTable.remove"/>
-            </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
