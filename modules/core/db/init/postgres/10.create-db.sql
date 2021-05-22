@@ -10,10 +10,10 @@ create table HELTHDIARY_PATIENT (
     DELETED_BY varchar(50),
     --
     USER_ID uuid not null,
-    NAME_FIRST varchar(50) not null,
-    NAME_LAST varchar(50) not null,
-    DATE_OF_BIRTH date not null,
-    GENDER integer not null,
+    NAME_FIRST varchar(50),
+    NAME_LAST varchar(50),
+    DATE_OF_BIRTH date,
+    GENDER integer,
     HEIGHT double precision,
     WEIGHT double precision,
     CALORIE double precision,
@@ -32,7 +32,7 @@ create table HELTHDIARY_PRESSURE (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    USER_ID uuid not null,
+    PATIENT_ID uuid not null,
     UPPER_BP integer not null,
     LOWER_BP integer not null,
     DESCRIPTION text,
@@ -52,8 +52,8 @@ create table HELTHDIARY_PULSE (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
+    PATIENT_ID uuid,
     RATE integer not null,
-    USER_ID uuid,
     DESCRIPTION text,
     DATE_ date not null,
     --
@@ -71,7 +71,7 @@ create table HELTHDIARY_TEMPERATURE (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    USER_ID uuid,
+    PATIENT_ID uuid,
     MEASURE double precision not null,
     DATE_ date not null,
     DESCRIPTION varchar(255),
@@ -110,7 +110,7 @@ create table HELTHDIARY_GLUCOSE (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    USER_ID uuid not null,
+    PATIENT_ID uuid not null,
     BEFORE_FOOD boolean,
     LEVEL integer not null,
     DESCRIPTION text,
@@ -131,6 +131,7 @@ create table HELTHDIARY_VISIT (
     DELETED_BY varchar(50),
     --
     PATIENT_ID uuid not null,
+    STYLENAME varchar(255),
     DOCTOR_ID uuid not null,
     TYPE_ varchar(50) not null,
     START_ timestamp not null,
