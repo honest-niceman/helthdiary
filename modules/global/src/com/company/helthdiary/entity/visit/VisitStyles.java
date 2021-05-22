@@ -5,18 +5,16 @@ import com.haulmont.chile.core.datatypes.impl.EnumClass;
 import javax.annotation.Nullable;
 
 
-public enum VisitType implements EnumClass<String> {
+public enum VisitStyles implements EnumClass<String> {
 
-
-    REGULAR_CHECKUP("Regular checkup"),
-    DISEASE("Disease"),
-    TESTS("Tests"),
-    OTHER("Other");
-
+    RED("event-red"),
+    YELLOW("event-yellow"),
+    BLUE("event-blue"),
+    GREEN("event-green");
 
     private String id;
 
-    VisitType(String value) {
+    VisitStyles(String value) {
         this.id = value;
     }
 
@@ -25,8 +23,8 @@ public enum VisitType implements EnumClass<String> {
     }
 
     @Nullable
-    public static VisitType fromId(String id) {
-        for (VisitType at : VisitType.values()) {
+    public static VisitStyles fromId(String id) {
+        for (VisitStyles at : VisitStyles.values()) {
             if (at.getId().equals(id)) {
                 return at;
             }

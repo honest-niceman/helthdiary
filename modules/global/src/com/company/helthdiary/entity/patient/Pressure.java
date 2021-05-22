@@ -4,7 +4,6 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
-import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,10 +16,10 @@ public class Pressure extends StandardEntity {
     private static final long serialVersionUID = -3841916254072302190L;
 
     @Lookup(type = LookupType.SCREEN, actions = {"lookup", "open", "clear"})
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "PATIENT_ID")
+    @NotNull
+    private Patient patient;
 
     @NotNull
     @Column(name = "UPPER_BP", nullable = false)
@@ -38,6 +37,14 @@ public class Pressure extends StandardEntity {
     @NotNull
     @Column(name = "DATE_", nullable = false)
     private Date date;
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
 
     public Date getDate() {
         return date;
@@ -71,11 +78,4 @@ public class Pressure extends StandardEntity {
         this.upperBp = upperBp;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

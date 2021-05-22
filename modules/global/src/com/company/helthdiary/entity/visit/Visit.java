@@ -23,6 +23,9 @@ public class Visit extends StandardEntity {
     @JoinColumn(name = "PATIENT_ID")
     private Patient patient;
 
+    @Column(name = "STYLENAME")
+    private String stylename;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DOCTOR_ID")
@@ -45,10 +48,12 @@ public class Visit extends StandardEntity {
     @MetaProperty(related = "type")
     private String doctorType;
 
-    public String getDoctorType() {
-        return Optional.ofNullable(getType())
-                .map(VisitType::getStyleName)
-                .orElse("");
+    public String getStylename() {
+        return stylename;
+    }
+
+    public void setStylename(String stylename) {
+        this.stylename = stylename;
     }
 
     public String getDoctorName() {
@@ -64,19 +69,6 @@ public class Visit extends StandardEntity {
     public VisitType getType() {
         return type == null ? null : VisitType.fromId(type);
     }
-
-    /*@MetaProperty(related = "doctor")
-    public String getDoctorName() {
-        return Optional.ofNullable(getDoctor())
-                .map(Doctor::getFirstname)
-                .orElse("");
-    }
-    @MetaProperty(related = "type")
-    public String getTypeStyle() {
-        return Optional.ofNullable(getType())
-                .map(VisitType::getStyleName)
-                .orElse("");
-    }*/
 
     public Patient getPatient() {
         return patient;

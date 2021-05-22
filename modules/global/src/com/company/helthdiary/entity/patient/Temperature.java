@@ -2,7 +2,6 @@ package com.company.helthdiary.entity.patient;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
-import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,8 +14,8 @@ public class Temperature extends StandardEntity {
     private static final long serialVersionUID = -818164572215176035L;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "PATIENT_ID")
+    private Patient patient;
 
     @NotNull
     @Column(name = "MEASURE", nullable = false)
@@ -29,6 +28,14 @@ public class Temperature extends StandardEntity {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
 
     public String getDescription() {
         return description;
@@ -54,11 +61,4 @@ public class Temperature extends StandardEntity {
         this.measure = measure;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

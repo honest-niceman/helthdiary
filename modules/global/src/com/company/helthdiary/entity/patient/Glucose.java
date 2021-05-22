@@ -4,7 +4,6 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
-import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,10 +16,10 @@ public class Glucose extends StandardEntity {
     private static final long serialVersionUID = 8302173468187410980L;
 
     @Lookup(type = LookupType.SCREEN, actions = {"lookup", "open", "clear"})
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "PATIENT_ID")
+    @NotNull
+    private Patient patient;
 
     @Column(name = "BEFORE_FOOD")
     private Boolean beforeFood;
@@ -38,16 +37,20 @@ public class Glucose extends StandardEntity {
     @Column(name = "DATE_", nullable = false)
     private Date date;
 
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
     public Boolean getBeforeFood() {
         return beforeFood;
     }
 
     public void setBeforeFood(Boolean beforeFood) {
         this.beforeFood = beforeFood;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setLevel(Integer level) {
@@ -64,10 +67,6 @@ public class Glucose extends StandardEntity {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public Integer getLevel() {
