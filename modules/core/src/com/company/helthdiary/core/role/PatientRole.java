@@ -11,7 +11,7 @@ import com.haulmont.cuba.security.role.EntityPermissionsContainer;
 import com.haulmont.cuba.security.role.ScreenPermissionsContainer;
 import com.haulmont.cuba.security.role.SpecificPermissionsContainer;
 
-@Role(name = PatientRole.NAME, isDefault = true)
+@Role(name = PatientRole.NAME)
 public class PatientRole extends AnnotatedRoleDefinition {
     public final static String NAME = "Patient";
 
