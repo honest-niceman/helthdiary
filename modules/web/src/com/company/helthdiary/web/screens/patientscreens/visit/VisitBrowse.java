@@ -54,6 +54,7 @@ public class VisitBrowse extends StandardLookup<Visit> {
     @Subscribe("btn")
     public void onBtnClick(Button.ClickEvent event) {
         generateVisits();
+        visitsDl.load();
     }
 
     private Random random = new Random();
@@ -92,7 +93,6 @@ public class VisitBrowse extends StandardLookup<Visit> {
             commitContext.addInstanceToCommit(visit);
         }
         dataManager.commit(commitContext);
-        visitsDl.load();
     }
 
     public LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {

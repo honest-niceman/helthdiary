@@ -39,6 +39,7 @@ public class PulseBrowse extends StandardLookup<Pulse> {
     @Subscribe("btn")
     public void onBtnClick(Button.ClickEvent event) {
         generate();
+        pulsesDl.load();
     }
 
     private Random random = new Random();

@@ -40,6 +40,7 @@ public class GlucoseBrowse extends StandardLookup<Glucose> {
     @Subscribe("btn")
     public void onBtnClick(Button.ClickEvent event) {
         generate();
+        glucoseDl.load();
     }
 
     private Random random = new Random();

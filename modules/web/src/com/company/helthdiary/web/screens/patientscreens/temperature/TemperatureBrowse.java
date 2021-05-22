@@ -41,6 +41,7 @@ public class TemperatureBrowse extends StandardLookup<Temperature> {
     @Subscribe("btn")
     public void onBtnClick(Button.ClickEvent event) {
         generate();
+        temperaturesDl.load();
     }
 
     private Random random = new Random();

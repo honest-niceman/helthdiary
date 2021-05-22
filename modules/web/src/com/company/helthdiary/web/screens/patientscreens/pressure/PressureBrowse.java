@@ -40,6 +40,7 @@ public class PressureBrowse extends StandardLookup<Pressure> {
     @Subscribe("btn")
     public void onBtnClick(Button.ClickEvent event) {
         generate();
+        pressuresDl.load();
     }
 
     private Random random = new Random();
