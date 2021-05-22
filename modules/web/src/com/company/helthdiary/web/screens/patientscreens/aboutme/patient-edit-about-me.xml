@@ -18,12 +18,12 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="patientDc">
             <column width="350px">
-                <textField id="nameFirstField" property="nameFirst"/>
-                <textField id="nameLastField" property="nameLast"/>
-                <dateField id="dateOfBirthField" property="dateOfBirth"/>
-                <lookupField id="genderField" nullOptionVisible="false" property="gender"/>
-                <textField id="heightField" property="height"/>
-                <textField id="weightField" property="weight"/>
+                <textField id="nameFirstField" property="nameFirst" required="true"/>
+                <textField id="nameLastField" property="nameLast" required="true"/>
+                <dateField id="dateOfBirthField" property="dateOfBirth" required="true"/>
+                <lookupField id="genderField" nullOptionVisible="false" property="gender" required="true"/>
+                <textField id="heightField" property="height" required="true"/>
+                <textField id="weightField" property="weight" required="true"/>
                 <textField id="calorieField" editable="false" property="calorie"/>
             </column>
         </form>

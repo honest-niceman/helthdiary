@@ -6,18 +6,21 @@
     <data>
         <instance id="glucoseDc"
                   class="com.company.helthdiary.entity.patient.Glucose">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal"/>
+            </view>
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                forceDialog="true"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="glucoseDc">
             <column width="350px">
-                <textField id="levelField" property="level"/>
+                <textField id="levelField" property="level" required="true"/>
                 <textArea id="descriptionField" property="description" rows="5"/>
-                <dateField id="dateField" property="date"/>
+                <dateField id="dateField" property="date" required="true"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

@@ -88,7 +88,7 @@ public class Visit extends StandardEntity {
 
     @MetaProperty(related = {"start"})
     public LocalDateTime getEnd() {
-        return (start != null) ? start.plusHours(1) : null;
+        return (start != null) ? start.plusHours(2) : null;
     }
 
     public LocalDateTime getStart() {

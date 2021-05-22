@@ -10,24 +10,28 @@
                 <property name="doctor" view="_minimal">
                     <property name="lastname"/>
                 </property>
+                <property name="patient" view="_minimal"/>
+                <property name="doctorName"/>
+                <property name="doctorType"/>
             </view>
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                forceDialog="true"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="visitDc">
             <column width="350px">
-                <pickerField id="doctorField" property="doctor">
+                <pickerField id="doctorField" property="doctor" required="true">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>
                     </actions>
                 </pickerField>
-                <dateField id="startField" property="start"/>
-                <dateField id="endField" property="end"/>
-                <lookupField id="typeField" property="type"/>
+                <dateField id="startField" property="start" required="true"/>
+                <dateField id="endField" property="end" required="true"/>
+                <lookupField id="typeField" property="type" required="true"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

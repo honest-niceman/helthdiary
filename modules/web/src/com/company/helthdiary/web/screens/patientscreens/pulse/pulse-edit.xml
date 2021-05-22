@@ -6,18 +6,21 @@
     <data>
         <instance id="pulseDc"
                   class="com.company.helthdiary.entity.patient.Pulse">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal"/>
+            </view>
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                forceDialog="true"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="pulseDc">
             <column width="350px">
-                <textField id="rateField" property="rate"/>
-                <textArea id="descriptionField" property="description" rows="5"/>
-                <dateField id="dateField" property="date"/>
+                <textField id="rateField" property="rate" required="true"/>
+                <textArea id="descriptionField" property="description"/>
+                <dateField id="dateField" property="date" required="true"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

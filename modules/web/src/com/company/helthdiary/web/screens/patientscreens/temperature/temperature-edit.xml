@@ -6,18 +6,21 @@
     <data>
         <instance id="temperatureDc"
                   class="com.company.helthdiary.entity.patient.Temperature">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="patient" view="_minimal"/>
+            </view>
             <loader/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                forceDialog="true"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="temperatureDc">
             <column width="350px">
-                <textField id="measureField" property="measure"/>
-                <dateField id="dateField" property="date"/>
-                <textField id="descriptionField" property="description"/>
+                <textField id="measureField" property="measure" required="true"/>
+                <textArea id="descriptionField" property="description"/>
+                <dateField id="dateField" property="date" required="true"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
