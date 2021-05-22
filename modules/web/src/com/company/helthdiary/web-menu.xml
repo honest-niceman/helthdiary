@@ -12,15 +12,15 @@
         <item screen="helthdiary_GraphScreen" caption="mainMsg://reports"/>
         <item screen="helthdiary_Doctor.browse1" caption="mainMsg://menu_config.helthdiary_Doctor.browse1"/>
         <item screen="helthdiary_Visit.browse" caption="mainMsg://menu_config.helthdiary_Visit.browse"/>
-        <item class="com.company.helthdiary.web.screens.patientscreens.aboutme.AboutMeOpener" caption="mainMsg://aboutMe"/>
-
-        <separator/>
-
-        <!-- Administrator screens -->
-        <item screen="helthdiary_Doctor.browse" caption="mainMsg://menu_config.helthdiary_Doctor.browse"/>
+        <item id="about_me_opener"
+              class="com.company.helthdiary.web.screens.patientscreens.aboutme.AboutMeOpener"
+              caption="mainMsg://aboutMe"/>
 
         <!-- Doctor screens -->
         <item screen="helthdiary_All_Patients.browse" caption="mainMsg://menu_config.helthdiary_All_Patients.browse"/>
         <item screen="helthdiary_DoctorVisit.browse" caption="mainMsg://menu_config.helthdiary_DoctorVisit.browse"/>
+
+        <!-- Administrator screens -->
+        <item screen="helthdiary_Doctor.browse" caption="mainMsg://menu_config.helthdiary_Doctor.browse"/>
     </menu>
 </menu-config>

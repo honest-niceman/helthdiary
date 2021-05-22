@@ -1,5 +1,5 @@
 buildscript {
-    ext.cubaVersion = '7.2.13'
+    ext.cubaVersion = '7.2.4'
     repositories {
         maven {
             url 'https://repo.cuba-platform.com/content/groups/work'
@@ -38,7 +38,7 @@ cuba {
 
 dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
-    appComponent('com.haulmont.addon.helium:helium-global:0.3.1')
+    appComponent('com.haulmont.addon.helium:helium-global:0.3.0')
     appComponent("com.haulmont.charts:charts-global:$cubaVersion")
 }
 
@@ -215,7 +215,10 @@ task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
     delete("$cuba.tomcat.dir/webapps/${modulePrefix}")
 }
 
-task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefix}-web:deploy", ":${modulePrefix}-web-toolkit:deploy"], description: 'Redeploys applications and restarts local Tomcat') {
+task restart(dependsOn: ['stop',
+                         ":${modulePrefix}-core:deploy",
+                         ":${modulePrefix}-web:deploy",
+                         ":${modulePrefix}-web-toolkit:deploy"], description: 'Redeploys applications and restarts local Tomcat') {
     doLast {
         ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
             not {
