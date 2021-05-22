@@ -9,7 +9,9 @@
             <item screen="helthdiary_Pressure.browse" caption="mainMsg://menu_config.helthdiary_Pressure.browse"/>
             <item screen="helthdiary_Pulse.browse" caption="mainMsg://menu_config.helthdiary_Pulse.browse"/>
         </menu>
-        <item screen="helthdiary_GraphScreen" caption="mainMsg://reports"/>
+        <item id="graphs_opener"
+              class="com.company.helthdiary.web.screens.patientscreens.graphs.GraphsOpener"
+              caption="mainMsg://reports"/>
         <item screen="helthdiary_Doctor.browse1" caption="mainMsg://menu_config.helthdiary_Doctor.browse1"/>
         <item screen="helthdiary_Visit.browse" caption="mainMsg://menu_config.helthdiary_Visit.browse"/>
         <item id="about_me_opener"

@@ -62,7 +62,6 @@
     </data>
 
     <layout spacing="true" margin="true">
-
         <hbox spacing="true">
             <vbox  stylename="well">
                 <label icon="font-icon:HEARTBEAT"
@@ -164,6 +163,7 @@
                                    marginLeft="40"
                                    marginRight="40"
                                    categoryField="date"
+                                   startDuration="1"
                                    dataContainer="temperaturesDc"
                                    theme="LIGHT">
                     <chart:valueAxes>
@@ -216,6 +216,7 @@
                                    categoryField="date"
                                    dataContainer="pressuresDc"
                                    marginLeft="50"
+                                   startDuration="1"
                                    theme="LIGHT">
                     <chart:valueAxes>
                         <chart:axis id="v1"

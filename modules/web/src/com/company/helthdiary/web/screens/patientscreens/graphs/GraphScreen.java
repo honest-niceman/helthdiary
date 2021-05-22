@@ -9,15 +9,12 @@ import com.haulmont.charts.gui.data.ListDataProvider;
 import com.haulmont.charts.gui.data.MapDataItem;
 import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.TimeSource;
-import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.components.Button;
 import com.haulmont.cuba.gui.components.DateField;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionLoader;
 import com.haulmont.cuba.gui.screen.*;
-import com.haulmont.cuba.security.entity.User;
-import com.haulmont.cuba.web.App;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
@@ -31,7 +28,7 @@ import java.util.Map;
 @UiDescriptor("graph-screen.xml")
 public class GraphScreen extends Screen {
     @Inject
-    private CollectionLoader<com.company.helthdiary.entity.patient.Pulse> pulsesDl;
+    private CollectionLoader<Pulse> pulsesDl;
     @Inject
     private CollectionLoader<Glucose> glucoseDl;
     @Inject
@@ -83,16 +80,20 @@ public class GraphScreen extends Screen {
         }
     }
 
-    private void initPatientAndUser(InitEvent event){
+    private void initPatientAndUser(InitEvent event) {
         ScreenOptions options = event.getOptions();
         if (options instanceof SelectedPatient) {
             patient = ((SelectedPatient) options).getPatient();
+            if (patient.getDateOfBirth() == null) {
+                notifications.create().withCaption("Selected patient did not fill required information to graphs calculation.").show();
+                return;
+            }
         } else {
             patient = AppBeans.get(PatientGetterService.class).getPatient();
         }
     }
 
-    private void initLoaders(){
+    private void initLoaders() {
         pulsesDl.setParameter("patient", patient);
         pulsesDl.load();
 
@@ -185,7 +186,7 @@ public class GraphScreen extends Screen {
         return normalRateMax;
     }
 
-    private int calculateNormalRateMin(int age){
+    private int calculateNormalRateMin(int age) {
         int normalRateMin = 0;
 
         if (age >= 12 && age <= 15) {

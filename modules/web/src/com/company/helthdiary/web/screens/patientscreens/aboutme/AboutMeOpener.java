@@ -9,7 +9,6 @@ import com.haulmont.cuba.web.AppUI;
 public class AboutMeOpener implements Runnable{
     @Override
     public void run() {
-
         Screens screens = AppUI.getCurrent().getScreens();
 
         AboutMePatientEdit aboutMePatientEdit = screens.create(AboutMePatientEdit.class, OpenMode.NEW_TAB);

@@ -59,6 +59,7 @@ public class PatientRole extends AnnotatedRoleDefinition {
             "helthdiary_GraphScreen",
             "helthdiary_Doctor.browse1",
             "aboutWindow",
+            "graphs_opener",
             "about_me_opener",
             "help",
             "settings",
